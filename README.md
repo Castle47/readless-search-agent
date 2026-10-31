@@ -1,5 +1,7 @@
 # ReadLess Search Agent
 
+[中文文档](README.zh-CN.md) · English
+
 An evidence-first search agent built with Python and LangGraph. It rewrites conversational questions, plans parallel research, retrieves public and private knowledge, preserves source snapshots, and produces cited answers that survive interruption and replay.
 
 ## What it includes
