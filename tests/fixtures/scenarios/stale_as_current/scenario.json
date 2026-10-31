@@ -1,0 +1,21 @@
+{
+  "expected": "partial",
+  "freshness": "historical",
+  "as_of": "2023-01-01T00:00:00+00:00",
+  "pages": [
+    {
+      "url": "https://official.example.org/spec",
+      "quote": "The verified fixture value is 42. 中文🐿️é",
+      "claim": "The verified fixture value is 42.",
+      "published_at": "2025-01-01T00:00:00+00:00",
+      "text": "Official specification. The verified fixture value is 42. 中文🐿️é This statement refers to the first release, under the documented test conditions."
+    }
+  ],
+  "expected_criteria": 1,
+  "allowed_source_urls": [
+    "https://official.example.org/spec"
+  ],
+  "required_limitations": [
+    "本次未获得足够可核验的证据"
+  ]
+}

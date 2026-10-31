@@ -1,0 +1,9 @@
+{
+  "expected": "partial",
+  "pages": [],
+  "expected_criteria": 1,
+  "allowed_source_urls": [],
+  "required_limitations": [
+    "本次未获得足够可核验的证据"
+  ]
+}

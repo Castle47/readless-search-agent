@@ -1,0 +1,62 @@
+{
+  "$defs": {
+    "QualityIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "paragraph_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Paragraph Ids",
+          "type": "array"
+        },
+        "problem": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Problem",
+          "type": "string"
+        },
+        "suggestion": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Suggestion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "paragraph_ids",
+        "problem",
+        "suggestion"
+      ],
+      "title": "QualityIssue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/QualityIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "strengths": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Strengths",
+      "type": "array"
+    }
+  },
+  "required": [
+    "issues",
+    "strengths"
+  ],
+  "title": "QualityReview",
+  "type": "object"
+}

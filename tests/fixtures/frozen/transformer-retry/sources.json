@@ -1,0 +1,1974 @@
+[
+  {
+    "id": "624ec708-d1a0-5ad7-93b7-c366bcf0b165",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://arxiv.org/abs/1706.03762",
+    "canonical_url": "https://arxiv.org/abs/1706.03762",
+    "title": "Attention Is All You Need",
+    "publisher_key": "arxiv.org",
+    "source_type": "paper",
+    "media_type": "text/html",
+    "content_text": "Computer Science > Computation and Language\n  [Submitted on 12 Jun 2017 (v1), last revised 2 Aug 2023 (this version, v7)]\n    Title:Attention Is All You Need\nView PDF HTML (experimental)\n            Abstract:The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.\n    \nSubmission history\nFrom: Llion Jones [view email]\n[v1] Mon, 12 Jun 2017 17:57:34 UTC (1,102 KB)\n[v2] Mon, 19 Jun 2017 16:49:45 UTC (1,125 KB)\n[v3] Tue, 20 Jun 2017 05:20:02 UTC (1,125 KB)\n[v4] Fri, 30 Jun 2017 17:29:30 UTC (1,124 KB)\n[v5] Wed, 6 Dec 2017 03:30:32 UTC (1,124 KB)\n[v6] Mon, 24 Jul 2023 00:48:54 UTC (1,124 KB)\n[v7] Wed, 2 Aug 2023 00:41:18 UTC (1,124 KB)\nBibliographic and Citation Tools\n            Bibliographic Explorer (What is the Explorer?)\n          \n        \n            Connected Papers (What is Connected Papers?)\n          \n        \n            Litmaps (What is Litmaps?)\n          \n        \n            scite Smart Citations (What are Smart Citations?)\n          \n        Code, Data and Media Associated with this Article\n            alphaXiv (What is alphaXiv?)\n          \n        \n            CatalyzeX Code Finder for Papers (What is CatalyzeX?)\n          \n        \n            DagsHub (What is DagsHub?)\n          \n        \n            Gotit.pub (What is GotitPub?)\n          \n        \n            Hugging Face (What is Huggingface?)\n          \n        \n            ScienceCast (What is ScienceCast?)\n          \n        Demos\nRecommenders and Search Tools\n              Influence Flower (What are Influence Flowers?)\n            \n          \n              CORE Recommender (What is CORE?)\n            \n          arXivLabs: experimental projects with community collaborators\narXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.\nBoth individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.\nHave an idea for a project that will add value for arXiv's community? Learn more about arXivLabs.",
+    "content_sha256": "131c34b3f4c733f8eba653c720212cd0dad0de1b5b8191e199947dd74d1bea36",
+    "published_at": null,
+    "retrieved_at": "2026-09-24 15:44:24.993213+00:00",
+    "metadata": {
+      "document": {
+        "basis": [
+          {
+            "kind": "arxiv_url",
+            "value": "https://arxiv.org/abs/1706.03762"
+          }
+        ],
+        "edition": null,
+        "version": 1,
+        "work_id": "arxiv:1706.03762",
+        "identifiers": [
+          "arxiv:1706.03762"
+        ],
+        "representation": "abstract"
+      },
+      "sections": [
+        {
+          "level": 1,
+          "title": "Computer Science > Computation and Language",
+          "end_char": 126,
+          "start_char": 0
+        },
+        {
+          "level": 1,
+          "title": "Title:Attention Is All You Need",
+          "end_char": 1720,
+          "start_char": 126
+        },
+        {
+          "level": 2,
+          "title": "Submission history",
+          "end_char": 1720,
+          "start_char": 1350
+        },
+        {
+          "level": 1,
+          "title": "Bibliographic and Citation Tools",
+          "end_char": 2049,
+          "start_char": 1720
+        },
+        {
+          "level": 1,
+          "title": "Code, Data and Media Associated with this Article",
+          "end_char": 2501,
+          "start_char": 2049
+        },
+        {
+          "level": 1,
+          "title": "Demos",
+          "end_char": 2507,
+          "start_char": 2501
+        },
+        {
+          "level": 1,
+          "title": "Recommenders and Search Tools",
+          "end_char": 2692,
+          "start_char": 2507
+        },
+        {
+          "level": 1,
+          "title": "arXivLabs: experimental projects with community collaborators",
+          "end_char": 3209,
+          "start_char": 2692
+        }
+      ],
+      "extractor": "trafilatura",
+      "modified_at": null,
+      "requested_url": "https://arxiv.org/abs/1706.03762",
+      "date_provenance": "unknown",
+      "reference_links": [
+        {
+          "url": "https://arxiv.org/html/1706.03762v7",
+          "label": "HTML (experimental)",
+          "full_text": true,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://arxiv.org/pdf/1706.03762",
+          "label": "View PDF",
+          "full_text": true,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://alphaxiv.org/",
+          "label": "What is alphaXiv?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dagshub.com/",
+          "label": "What is DagsHub?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/",
+          "label": "DBLP",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://influencemap.cmlab.dev/",
+          "label": "What are Influence Flowers?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://status.arxiv.org/",
+          "label": "Operational Status (opens in new tab)",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://txyz.ai/",
+          "label": "What is TXYZ.AI?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.catalyzex.com/",
+          "label": "What is CatalyzeX?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.litmaps.co/",
+          "label": "What is Litmaps?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.scite.ai/",
+          "label": "What are Smart Citations?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "http://gotit.pub/faq",
+          "label": "What is GotitPub?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://api.semanticscholar.org/arXiv:1706.03762",
+          "label": "Semantic Scholar",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://core.ac.uk/services/recommender",
+          "label": "What is CORE?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/db/journals/corr/corr1706.html",
+          "label": "listing",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/rec/bibtex/journals/corr/VaswaniSPUJGKP17",
+          "label": "bibtex",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/search/author?author=Ashish+Vaswani",
+          "label": "Ashish Vaswani",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/search/author?author=Jakob+Uszkoreit",
+          "label": "Jakob Uszkoreit",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/search/author?author=Llion+Jones",
+          "label": "Llion Jones",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/search/author?author=Niki+Parmar",
+          "label": "Niki Parmar",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://dblp.uni-trier.de/search/author?author=Noam+Shazeer",
+          "label": "Noam Shazeer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://doi.org/10.48550/arXiv.1706.03762",
+          "label": "https://doi.org/10.48550/arXiv.1706.03762",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/hub/spaces",
+          "label": "What is Spaces?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/huggingface",
+          "label": "What is Huggingface?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about",
+          "label": "About",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about/donate.html",
+          "label": "Donate",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about/ourmembers.html",
+          "label": "member institutions",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help",
+          "label": "Help",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/contact.html",
+          "label": "Contact",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/license/index.html",
+          "label": "Copyright",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/mathjax.html",
+          "label": "What is MathJax?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/policies/privacy_policy.html",
+          "label": "Privacy",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/subscribe",
+          "label": "Subscribe",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/trackback.html",
+          "label": "what is this?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/web_accessibility.html",
+          "label": "Accessibility",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/labs/index.html",
+          "label": "Learn more about arXivLabs",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/labs/showcase.html",
+          "label": "What is the Explorer?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://replicate.com/docs/arxiv/about",
+          "label": "What is Replicate?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://scholar.google.com/scholar_lookup?arxiv_id=1706.03762",
+          "label": "Google Scholar",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://sciencecast.org/welcome",
+          "label": "What is ScienceCast?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://ui.adsabs.harvard.edu/abs/arXiv:1706.03762",
+          "label": "NASA ADS",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.connectedpapers.com/about",
+          "label": "What is Connected Papers?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "22591933-f086-5b3d-99fa-e13ca6f294ca",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://arxiv.org/html/1706.03762v7",
+    "canonical_url": "https://arxiv.org/html/1706.03762v7",
+    "title": "Attention Is All You Need",
+    "publisher_key": "arxiv.org",
+    "source_type": "paper",
+    "media_type": "text/html",
+    "content_text": "Provided proper attribution is provided, Google hereby grants permission to reproduce the tables and figures in this paper solely for use in journalistic or scholarly works.\nAttention Is All You Need\nAbstract\nThe dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.\n1 Introduction\nRecurrent neural networks, long short-term memory [13] and gated recurrent [7] neural networks in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation [35, 2, 5]. Numerous efforts have since continued to push the boundaries of recurrent language models and encoder-decoder architectures [38, 24, 15].\nRecurrent models typically factor computation along the symbol positions of the input and output sequences. Aligning the positions to steps in computation time, they generate a sequence of hidden states , as a function of the previous hidden state and the input for position . This inherently sequential nature precludes parallelization within training examples, which becomes critical at longer sequence lengths, as memory constraints limit batching across examples. Recent work has achieved significant improvements in computational efficiency through factorization tricks [21] and conditional computation [32], while also improving model performance in case of the latter. The fundamental constraint of sequential computation, however, remains.\nAttention mechanisms have become an integral part of compelling sequence modeling and transduction models in various tasks, allowing modeling of dependencies without regard to their distance in the input or output sequences [2, 19]. In all but a few cases [27], however, such attention mechanisms are used in conjunction with a recurrent network.\nIn this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs.\n2 Background\nThe goal of reducing sequential computation also forms the foundation of the Extended Neural GPU [16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building block, computing hidden representations in parallel for all input and output positions. In these models, the number of operations required to relate signals from two arbitrary input or output positions grows in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2.\nSelf-attention, sometimes called intra-attention is an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence. Self-attention has been used successfully in a variety of tasks including reading comprehension, abstractive summarization, textual entailment and learning task-independent sentence representations [4, 27, 28, 22].\nEnd-to-end memory networks are based on a recurrent attention mechanism instead of sequence-aligned recurrence and have been shown to perform well on simple-language question answering and language modeling tasks [34].\nTo the best of our knowledge, however, the Transformer is the first transduction model relying entirely on self-attention to compute representations of its input and output without using sequence-aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate self-attention and discuss its advantages over models such as [17, 18] and [9].\n3 Model Architecture\nMost competitive neural sequence transduction models have an encoder-decoder structure [5, 2, 35]. Here, the encoder maps an input sequence of symbol representations to a sequence of continuous representations . Given , the decoder then generates an output sequence of symbols one element at a time. At each step the model is auto-regressive [10], consuming the previously generated symbols as additional input when generating the next.\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively.\n3.1 Encoder and Decoder Stacks\nEncoder:\nThe encoder is composed of a stack of identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is , where is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension .\nDecoder:\nThe decoder is also composed of a stack of identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position can depend only on the known outputs at positions less than .\n3.2 Attention\nAn attention function can be described as mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key.\n3.2.1 Scaled Dot-Product Attention\nWe call our particular attention \"Scaled Dot-Product Attention\" (Figure 2). The input consists of queries and keys of dimension , and values of dimension . We compute the dot products of the query with all keys, divide each by , and apply a softmax function to obtain the weights on the values.\nIn practice, we compute the attention function on a set of queries simultaneously, packed together into a matrix . The keys and values are also packed together into matrices and . We compute the matrix of outputs as:\n|  |  |  | (1) | \nThe two most commonly used attention functions are additive attention [2], and dot-product (multiplicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor of . Additive attention computes the compatibility function using a feed-forward network with a single hidden layer. While the two are similar in theoretical complexity, dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code.\nWhile for small values of the two mechanisms perform similarly, additive attention outperforms dot product attention without scaling for larger values of [3]. We suspect that for large values of , the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients 11 1 To illustrate why the dot products get large, assume that the components of and are independent random variables with mean and variance . Then their dot product, , has mean and variance .. To counteract this effect, we scale the dot products by .\n3.2.2 Multi-Head Attention\nInstead of performing a single attention function with -dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values times with different, learned linear projections to , and dimensions, respectively. On each of these projected versions of queries, keys and values we then perform the attention function in parallel, yielding -dimensional output values. These are concatenated and once again projected, resulting in the final values, as depicted in Figure 2.\nMulti-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.\nWhere the projections are parameter matrices , , and .\nIn this work we employ parallel attention layers, or heads. For each of these we use . Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.\n3.2.3 Applications of Attention in our Model\nThe Transformer uses multi-head attention in three different ways:\n- • \nIn \"encoder-decoder attention\" layers, the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder. This allows every position in the decoder to attend over all positions in the input sequence. This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9].\n- • \nThe encoder contains self-attention layers. In a self-attention layer all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder. Each position in the encoder can attend to all positions in the previous layer of the encoder.\n- • \nSimilarly, self-attention layers in the decoder allow each position in the decoder to attend to all positions in the decoder up to and including that position. We need to prevent leftward information flow in the decoder to preserve the auto-regressive property. We implement this inside of scaled dot-product attention by masking out (setting to ) all values in the input of the softmax which correspond to illegal connections. See Figure 2.\n3.3 Position-wise Feed-Forward Networks\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.\n|  |  |  | (2) | \nWhile the linear transformations are the same across different positions, they use different parameters from layer to layer. Another way of describing this is as two convolutions with kernel size 1. The dimensionality of input and output is , and the inner-layer has dimensionality .\n3.4 Embeddings and Softmax\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vectors of dimension . We also use the usual learned linear transformation and softmax function to convert the decoder output to predicted next-token probabilities. In our model, we share the same weight matrix between the two embedding layers and the pre-softmax linear transformation, similar to [30]. In the embedding layers, we multiply those weights by .\n3.5 Positional Encoding\nSince our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence. To this end, we add \"positional encodings\" to the input embeddings at the bottoms of the encoder and decoder stacks. The positional encodings have the same dimension as the embeddings, so that the two can be summed. There are many choices of positional encodings, learned and fixed [9].\nIn this work, we use sine and cosine functions of different frequencies:\nwhere is the position and is the dimension. That is, each dimension of the positional encoding corresponds to a sinusoid. The wavelengths form a geometric progression from to . We chose this function because we hypothesized it would allow the model to easily learn to attend by relative positions, since for any fixed offset , can be represented as a linear function of .\nWe also experimented with using learned positional embeddings [9] instead, and found that the two versions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.\n4 Why Self-Attention\nIn this section we compare various aspects of self-attention layers to the recurrent and convolutional layers commonly used for mapping one variable-length sequence of symbol representations to another sequence of equal length , with , such as a hidden layer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we consider three desiderata.\nOne is the total computational complexity per layer. Another is the amount of computation that can be parallelized, as measured by the minimum number of sequential operations required.\nThe third is the path length between long-range dependencies in the network. Learning long-range dependencies is a key challenge in many sequence transduction tasks. One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies [12]. Hence we also compare the maximum path length between any two input and output positions in networks composed of the different layer types.\n| Layer Type | Complexity per Layer | Sequential | Maximum Path Length | \n|---|---|---|---|\n|  |  | Operations |  | \n| Self-Attention |  |  |  | \n| Recurrent |  |  |  | \n| Convolutional |  |  |  | \n| Self-Attention (restricted) |  |  |  | \nAs noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires sequential operations. In terms of computational complexity, self-attention layers are faster than recurrent layers when the sequence length is smaller than the representation dimensionality , which is most often the case with sentence representations used by state-of-the-art models in machine translations, such as word-piece [38] and byte-pair [31] representations. To improve computational performance for tasks involving very long sequences, self-attention could be restricted to considering only a neighborhood of size in the input sequence centered around the respective output position. This would increase the maximum path length to . We plan to investigate this approach further in future work.\nA single convolutional layer with kernel width does not connect all pairs of input and output positions. Doing so requires a stack of convolutional layers in the case of contiguous kernels, or in the case of dilated convolutions [18], increasing the length of the longest paths between any two positions in the network. Convolutional layers are generally more expensive than recurrent layers, by a factor of . Separable convolutions [6], however, decrease the complexity considerably, to . Even with , however, the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach we take in our model.\nAs side benefit, self-attention could yield more interpretable models. We inspect attention distributions from our models and present and discuss examples in the appendix. Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.\n5 Training\nThis section describes the training regime for our models.\n5.1 Training Data and Batching\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs. Sentences were encoded using byte-pair encoding [3], which has a shared source-target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT 2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece vocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000 target tokens.\n5.2 Hardware and Schedule\nWe trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the bottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps (3.5 days).\n5.3 Optimizer\nWe used the Adam optimizer [20] with , and . We varied the learning rate over the course of training, according to the formula:\n|  |  |  | (3) | \nThis corresponds to increasing the learning rate linearly for the first training steps, and decreasing it thereafter proportionally to the inverse square root of the step number. We used .\n5.4 Regularization\nWe employ three types of regularization during training:\nResidual Dropout\nWe apply dropout [33] to the output of each sub-layer, before it is added to the sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of .\nLabel Smoothing\nDuring training, we employed label smoothing of value [36]. This hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.\n6 Results\n6.1 Machine Translation\n| Model | BLEU |  |  | Training Cost (FLOPs) |  | \n|---|---|---|---|---|---|\n|  | EN-DE | EN-FR |  | EN-DE | EN-FR | \n| ByteNet [18] | 23.75 |  |  |  |  | \n| Deep-Att + PosUnk [39] |  | 39.2 |  |  |  | \n| GNMT + RL [38] | 24.6 | 39.92 |  |  |  | \n| ConvS2S [9] | 25.16 | 40.46 |  |  |  | \n| MoE [32] | 26.03 | 40.56 |  |  |  | \n| Deep-Att + PosUnk Ensemble [39] |  | 40.4 |  |  |  | \n| GNMT + RL Ensemble [38] | 26.30 | 41.16 |  |  |  | \n| ConvS2S Ensemble [9] | 26.36 | 41.29 |  |  |  | \n| Transformer (base model) | 27.3 | 38.1 |  |  |  | \n| Transformer (big) | 28.4 | 41.8 |  |  |  | \nOn the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table 2) outperforms the best previously reported models (including ensembles) by more than BLEU, establishing a new state-of-the-art BLEU score of . The configuration of this model is listed in the bottom line of Table 3. Training took days on P100 GPUs. Even our base model surpasses all previously published models and ensembles, at a fraction of the training cost of any of the competitive models.\nOn the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of , outperforming all of the previously published single models, at less than the training cost of the previous state-of-the-art model. The Transformer (big) model trained for English-to-French used dropout rate , instead of .\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We used beam search with a beam size of and length penalty [38]. These hyperparameters were chosen after experimentation on the development set. We set the maximum output length during inference to input length + , but terminate early when possible [38].\nTable 2 summarizes our results and compares our translation quality and training costs to other model architectures from the literature. We estimate the number of floating point operations used to train a model by multiplying the training time, the number of GPUs used, and an estimate of the sustained single-precision floating-point capacity of each GPU 22 2 We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively..\n6.2 Model Variations\n|  |  |  |  |  |  |  |  |  | train | PPL | BLEU | params | \n|  |  |  |  |  |  |  |  |  | steps | (dev) | (dev) |  | \n| base | 6 | 512 | 2048 | 8 | 64 | 64 | 0.1 | 0.1 | 100K | 4.92 | 25.8 | 65 | \n| (A) |  |  |  | 1 | 512 | 512 |  |  |  | 5.29 | 24.9 |  | \n|  |  |  |  | 4 | 128 | 128 |  |  |  | 5.00 | 25.5 |  | \n|  |  |  |  | 16 | 32 | 32 |  |  |  | 4.91 | 25.8 |  | \n|  |  |  |  | 32 | 16 | 16 |  |  |  | 5.01 | 25.4 |  | \n| (B) |  |  |  |  | 16 |  |  |  |  | 5.16 | 25.1 | 58 | \n|  |  |  |  |  | 32 |  |  |  |  | 5.01 | 25.4 | 60 | \n| (C) | 2 |  |  |  |  |  |  |  |  | 6.11 | 23.7 | 36 | \n|  | 4 |  |  |  |  |  |  |  |  | 5.19 | 25.3 | 50 | \n|  | 8 |  |  |  |  |  |  |  |  | 4.88 | 25.5 | 80 | \n|  |  | 256 |  |  | 32 | 32 |  |  |  | 5.75 | 24.5 | 28 | \n|  |  | 1024 |  |  | 128 | 128 |  |  |  | 4.66 | 26.0 | 168 | \n|  |  |  | 1024 |  |  |  |  |  |  | 5.12 | 25.4 | 53 | \n|  |  |  | 4096 |  |  |  |  |  |  | 4.75 | 26.2 | 90 | \n| (D) |  |  |  |  |  |  | 0.0 |  |  | 5.77 | 24.6 |  | \n|  |  |  |  |  |  |  | 0.2 |  |  | 4.95 | 25.5 |  | \n|  |  |  |  |  |  |  |  | 0.0 |  | 4.67 | 25.3 |  | \n|  |  |  |  |  |  |  |  | 0.2 |  | 5.47 | 25.7 |  | \n| (E) |  | positional embedding instead of sinusoids |  |  |  |  |  |  |  | 4.92 | 25.7 |  | \n| big | 6 | 1024 | 4096 | 16 |  |  | 0.3 |  | 300K | 4.33 | 26.4 | 213 | \nTo evaluate the importance of different components of the Transformer, we varied our base model in different ways, measuring the change in performance on English-to-German translation on the development set, newstest2013. We used beam search as described in the previous section, but no checkpoint averaging. We present these results in Table 3.\nIn Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions, keeping the amount of computation constant, as described in Section 3.2.2. While single-head attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.\nIn Table 3 rows (B), we observe that reducing the attention key size hurts model quality. This suggests that determining compatibility is not easy and that a more sophisticated compatibility function than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected, bigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our sinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical results to the base model.\n6.3 English Constituency Parsing\n| Parser | Training | WSJ 23 F1 | \n| Vinyals & Kaiser el al. (2014) [37] | WSJ only, discriminative | 88.3 | \n| Petrov et al. (2006) [29] | WSJ only, discriminative | 90.4 | \n| Zhu et al. (2013) [40] | WSJ only, discriminative | 90.4 | \n| Dyer et al. (2016) [8] | WSJ only, discriminative | 91.7 | \n| Transformer (4 layers) | WSJ only, discriminative | 91.3 | \n| Zhu et al. (2013) [40] | semi-supervised | 91.3 | \n| Huang & Harper (2009) [14] | semi-supervised | 91.3 | \n| McClosky et al. (2006) [26] | semi-supervised | 92.1 | \n| Vinyals & Kaiser el al. (2014) [37] | semi-supervised | 92.1 | \n| Transformer (4 layers) | semi-supervised | 92.7 | \n| Luong et al. (2015) [23] | multi-task | 93.0 | \n| Dyer et al. (2016) [8] | generative | 93.3 | \nTo evaluate if the Transformer can generalize to other tasks we performed experiments on English constituency parsing. This task presents specific challenges: the output is subject to strong structural constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence models have not been able to attain state-of-the-art results in small-data regimes [37].\nWe trained a 4-layer transformer with on the Wall Street Journal (WSJ) portion of the Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting, using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences [37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens for the semi-supervised setting.\nWe performed only a small number of experiments to select the dropout, both attention and residual (section 5.4), learning rates and beam size on the Section 22 development set, all other parameters remained unchanged from the English-to-German base translation model. During inference, we increased the maximum output length to input length + . We used a beam size of and for both WSJ only and the semi-supervised setting.\n7 Conclusion\nIn this work, we presented the Transformer, the first sequence transduction model based entirely on attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with multi-headed self-attention.\nFor translation tasks, the Transformer can be trained significantly faster than architectures based on recurrent or convolutional layers. On both WMT 2014 English-to-German and WMT 2014 English-to-French translation tasks, we achieve a new state of the art. In the former task our best model outperforms even all previously reported ensembles.\nWe are excited about the future of attention-based models and plan to apply them to other tasks. We plan to extend the Transformer to problems involving input and output modalities other than text and to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs such as images, audio and video. Making generation less sequential is another research goals of ours.\nThe code we used to train and evaluate our models is available at https://github.com/tensorflow/tensor2tensor.\nAcknowledgements\nWe are grateful to Nal Kalchbrenner and Stephan Gouws for their fruitful comments, corrections and inspiration.\nReferences\n- [1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450, 2016.\n- [2] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. CoRR, abs/1409.0473, 2014.\n- [3] Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V. Le. Massive exploration of neural machine translation architectures. CoRR, abs/1703.03906, 2017.\n- [4] Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine reading. arXiv preprint arXiv:1601.06733, 2016.\n- [5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. CoRR, abs/1406.1078, 2014.\n- [6] Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv preprint arXiv:1610.02357, 2016.\n- [7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.\n- [8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural network grammars. In Proc. of NAACL, 2016.\n- [9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolutional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.\n- [10] Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint arXiv:1308.0850, 2013.\n- [11] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 770–778, 2016.\n- [12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in recurrent nets: the difficulty of learning long-term dependencies, 2001.\n- [13] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997.\n- [14] Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations across languages. In Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing, pages 832–841. ACL, August 2009.\n- [15] Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring the limits of language modeling. arXiv preprint arXiv:1602.02410, 2016.\n- [16] Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In Advances in Neural Information Processing Systems, (NIPS), 2016.\n- [17] Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In International Conference on Learning Representations (ICLR), 2016.\n- [18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu. Neural machine translation in linear time. arXiv preprint arXiv:1610.10099v2, 2017.\n- [19] Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks. In International Conference on Learning Representations, 2017.\n- [20] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.\n- [21] Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. arXiv preprint arXiv:1703.10722, 2017.\n- [22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen Zhou, and Yoshua Bengio. A structured self-attentive sentence embedding. arXiv preprint arXiv:1703.03130, 2017.\n- [23] Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task sequence to sequence learning. arXiv preprint arXiv:1511.06114, 2015.\n- [24] Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention-based neural machine translation. arXiv preprint arXiv:1508.04025, 2015.\n- [25] Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated corpus of english: The penn treebank. Computational linguistics, 19(2):313–330, 1993.\n- [26] David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In Proceedings of the Human Language Technology Conference of the NAACL, Main Conference, pages 152–159. ACL, June 2006.\n- [27] Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention model. In Empirical Methods in Natural Language Processing, 2016.\n- [28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive summarization. arXiv preprint arXiv:1705.04304, 2017.\n- [29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact, and interpretable tree annotation. In Proceedings of the 21st International Conference on Computational Linguistics and 44th Annual Meeting of the ACL, pages 433–440. ACL, July 2006.\n- [30] Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv preprint arXiv:1608.05859, 2016.\n- [31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. arXiv preprint arXiv:1508.07909, 2015.\n- [32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv preprint arXiv:1701.06538, 2017.\n- [33] Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov. Dropout: a simple way to prevent neural networks from overfitting. Journal of Machine Learning Research, 15(1):1929–1958, 2014.\n- [34] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory networks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors, Advances in Neural Information Processing Systems 28, pages 2440–2448. Curran Associates, Inc., 2015.\n- [35] Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural networks. In Advances in Neural Information Processing Systems, pages 3104–3112, 2014.\n- [36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna. Rethinking the inception architecture for computer vision. CoRR, abs/1512.00567, 2015.\n- [37] Vinyals & Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In Advances in Neural Information Processing Systems, 2015.\n- [38] Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google’s neural machine translation system: Bridging the gap between human and machine translation. arXiv preprint arXiv:1609.08144, 2016.\n- [39] Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with fast-forward connections for neural machine translation. CoRR, abs/1606.04199, 2016.\n- [40] Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate shift-reduce constituent parsing. In Proceedings of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434–443. ACL, August 2013.",
+    "content_sha256": "7ff15f43592f9e861ff5950eb524142d55fb110740757f9abed0ca53c38ce5b3",
+    "published_at": null,
+    "retrieved_at": "2026-09-24 15:44:40.759831+00:00",
+    "metadata": {
+      "document": {
+        "basis": [
+          {
+            "kind": "arxiv_url",
+            "value": "https://arxiv.org/html/1706.03762v7"
+          }
+        ],
+        "edition": "v7",
+        "version": 1,
+        "work_id": "arxiv:1706.03762",
+        "identifiers": [
+          "arxiv:1706.03762"
+        ],
+        "representation": "full_text"
+      },
+      "sections": [
+        {
+          "level": 1,
+          "title": "Attention Is All You Need",
+          "end_char": 34199,
+          "start_char": 174
+        },
+        {
+          "level": 6,
+          "title": "Abstract",
+          "end_char": 1349,
+          "start_char": 200
+        },
+        {
+          "level": 2,
+          "title": "1 Introduction",
+          "end_char": 3260,
+          "start_char": 1349
+        },
+        {
+          "level": 2,
+          "title": "2 Background",
+          "end_char": 5087,
+          "start_char": 3260
+        },
+        {
+          "level": 2,
+          "title": "3 Model Architecture",
+          "end_char": 13707,
+          "start_char": 5087
+        },
+        {
+          "level": 3,
+          "title": "3.1 Encoder and Decoder Stacks",
+          "end_char": 7041,
+          "start_char": 5759
+        },
+        {
+          "level": 5,
+          "title": "Encoder:",
+          "end_char": 6364,
+          "start_char": 5790
+        },
+        {
+          "level": 5,
+          "title": "Decoder:",
+          "end_char": 7041,
+          "start_char": 6364
+        },
+        {
+          "level": 3,
+          "title": "3.2 Attention",
+          "end_char": 11286,
+          "start_char": 7041
+        },
+        {
+          "level": 4,
+          "title": "3.2.1 Scaled Dot-Product Attention",
+          "end_char": 9055,
+          "start_char": 7392
+        },
+        {
+          "level": 4,
+          "title": "3.2.2 Multi-Head Attention",
+          "end_char": 10064,
+          "start_char": 9055
+        },
+        {
+          "level": 4,
+          "title": "3.2.3 Applications of Attention in our Model",
+          "end_char": 11286,
+          "start_char": 10064
+        },
+        {
+          "level": 3,
+          "title": "3.3 Position-wise Feed-Forward Networks",
+          "end_char": 11901,
+          "start_char": 11286
+        },
+        {
+          "level": 3,
+          "title": "3.4 Embeddings and Softmax",
+          "end_char": 12412,
+          "start_char": 11901
+        },
+        {
+          "level": 3,
+          "title": "3.5 Positional Encoding",
+          "end_char": 13707,
+          "start_char": 12412
+        },
+        {
+          "level": 2,
+          "title": "4 Why Self-Attention",
+          "end_char": 17042,
+          "start_char": 13707
+        },
+        {
+          "level": 2,
+          "title": "5 Training",
+          "end_char": 19058,
+          "start_char": 17042
+        },
+        {
+          "level": 3,
+          "title": "5.1 Training Data and Batching",
+          "end_char": 17734,
+          "start_char": 17112
+        },
+        {
+          "level": 3,
+          "title": "5.2 Hardware and Schedule",
+          "end_char": 18159,
+          "start_char": 17734
+        },
+        {
+          "level": 3,
+          "title": "5.3 Optimizer",
+          "end_char": 18508,
+          "start_char": 18159
+        },
+        {
+          "level": 3,
+          "title": "5.4 Regularization",
+          "end_char": 19058,
+          "start_char": 18508
+        },
+        {
+          "level": 5,
+          "title": "Residual Dropout",
+          "end_char": 18882,
+          "start_char": 18584
+        },
+        {
+          "level": 5,
+          "title": "Label Smoothing",
+          "end_char": 19058,
+          "start_char": 18882
+        },
+        {
+          "level": 2,
+          "title": "6 Results",
+          "end_char": 25894,
+          "start_char": 19058
+        },
+        {
+          "level": 3,
+          "title": "6.1 Machine Translation",
+          "end_char": 21394,
+          "start_char": 19068
+        },
+        {
+          "level": 3,
+          "title": "6.2 Model Variations",
+          "end_char": 23894,
+          "start_char": 21394
+        },
+        {
+          "level": 3,
+          "title": "6.3 English Constituency Parsing",
+          "end_char": 25894,
+          "start_char": 23894
+        },
+        {
+          "level": 2,
+          "title": "7 Conclusion",
+          "end_char": 27123,
+          "start_char": 25894
+        },
+        {
+          "level": 5,
+          "title": "Acknowledgements",
+          "end_char": 27123,
+          "start_char": 26994
+        },
+        {
+          "level": 2,
+          "title": "References",
+          "end_char": 34199,
+          "start_char": 27123
+        }
+      ],
+      "extractor": "trafilatura",
+      "modified_at": null,
+      "requested_url": "https://arxiv.org/html/1706.03762v7",
+      "date_provenance": "unknown",
+      "reference_links": [
+        {
+          "url": "https://arxiv.org/pdf/1706.03762v7",
+          "label": "Download PDF",
+          "full_text": true,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://status.arxiv.org/",
+          "label": "Operational Status (opens in new tab)",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/arXiv/html_feedback/issues",
+          "label": "the following issues",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/brucemiller/LaTeXML/issues",
+          "label": "developer contributions",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/brucemiller/LaTeXML/wiki/Porting-LaTeX-packages-for-LaTeXML",
+          "label": "list of packages that need conversion",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/tensorflow/tensor2tensor",
+          "label": "https://github.com/tensorflow/tensor2tensor",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about",
+          "label": "Learn more",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about/accessible_HTML.html",
+          "label": "Why HTML?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/about/ourmembers.html",
+          "label": "member institutions",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help",
+          "label": "Help",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/contact.html",
+          "label": "Contact",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/license/index.html",
+          "label": "License: arXiv.org perpetual non-exclusive license",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/policies/privacy_policy.html",
+          "label": "Privacy",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/subscribe",
+          "label": "Subscribe",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://info.arxiv.org/help/web_accessibility.html",
+          "label": "Accessibility",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://math.nist.gov/~BMiller/LaTeXML/",
+          "label": "L A T E xml",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "75addd8d-3b31-513f-9661-6335990f2fcd",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://github.com/gordicaleksa/pytorch-original-transformer",
+    "canonical_url": "https://github.com/gordicaleksa/pytorch-original-transformer",
+    "title": "GitHub - gordicaleksa/pytorch-original-transformer: My implementation of the original transformer model (Vaswani et al.). I've additionally included the playground.py file for visualizing otherwise seemingly hard concepts. Currently included IWSLT pretrained models.",
+    "publisher_key": "github.com",
+    "source_type": "repository",
+    "media_type": "text/html",
+    "content_text": "This repo contains PyTorch implementation of the original transformer paper (:link: Vaswani et al.). \nIt's aimed at making it easy to start playing and learning about transformers. \nTransformers were originally proposed by Vaswani et al. in a seminal paper called Attention Is All You Need.\nYou probably heard of transformers one way or another. GPT-3 and BERT to name a few well known ones 🦄. The main idea is that they showed that you don't have to use recurrent or convolutional layers and that simple architecture coupled with attention is super powerful. It gave the benefit of much better long-range dependency modeling and the architecture itself is highly parallelizable (:computer::computer::computer:) which leads to better compute efficiency!\nHere is how their beautifully simple architecture looks like:\nThis repo is supposed to be a learning resource for understanding transformers as the original transformer by itself is not a SOTA anymore.\nFor that purpose the code is (hopefully) well commented and I've included the playground.py where I've visualized a couple\nof concepts which are hard to explain using words but super simple once visualized. So here we go!\nCan you parse this one in a glimpse of the eye?\nNeither can I. Running the visualize_positional_encodings() function from playground.py we get this:\nDepending on the position of your source/target token you \"pick one row of this image\" and you add it to it's embedding vector, that's it. They could also be learned, but it's just more fancy to do it like this, obviously! 🤓\nSimilarly can you parse this one in O(1)?\nNoup? So I thought, here it is visualized:\nIt's super easy to understand now. Now whether this part was crucial for the success of transformer? I doubt it.\nBut it's cool and makes things more complicated. 🤓 (.set_sarcasm(True))\nNote: model dimension is basically the size of the embedding vector, baseline transformer used 512, the big one 1024\nFirst time you hear of label smoothing it sounds tough but it's not. You usually set your target vocabulary distribution\nto a one-hot. Meaning 1 position out of 30k (or whatever your vocab size is) is set to 1. probability and everything else to 0.\nIn label smoothing instead of placing 1. on that particular position you place say 0.9 and you evenly distribute the rest of the \"probability mass\" over the other positions (that's visualized as a different shade of purple on the image above in a fictional vocab of size 4 - hence 4 columns)\nNote: Pad token's distribution is set to all zeros as we don't want our model to predict those!\nAside from this repo (well duh) I would highly recommend you go ahead and read this amazing blog by Jay Alammar!\nTransformer was originally trained for the NMT (neural machine translation) task on the WMT-14 dataset for:\n- English to German translation task (achieved 28.4 BLEU score)\n- English to French translation task (achieved 41.8 BLEU score)\nWhat I did (for now) is I trained my models on the IWSLT dataset, which is much smaller, for the English-German language pair, as I speak those languages so it's easier to debug and play around.\nI'll also train my models on WMT-14 soon, take a look at the todos section.\nAnyways! Let's see what this repo can practically do for you! Well it can translate!\nSome short translations from my German to English IWSLT model: \nInput: Ich bin ein guter Mensch, denke ich. (\"gold\": I am a good person I think) \nOutput: ['<s>', 'I', 'think', 'I', \"'m\", 'a', 'good', 'person', '.', '</s>'] \nor in human-readable format: I think I'm a good person.\nWhich is actually pretty good! Maybe even better IMO than Google Translate's \"gold\" translation.\nThere are of course failure cases like this: \nInput: Hey Alter, wie geht es dir? (How is it going dude?) \nOutput: ['<s>', 'Hey', ',', 'age', 'how', 'are', 'you', '?', '</s>'] \nor in human-readable format: Hey, age, how are you? \nWhich is actually also not completely bad! Because:\n- First of all the model was trained on IWSLT (TED like conversations)\n- \"Alter\" is a colloquial expression for old buddy/dude/mate but it's literal meaning is indeed age.\nSimilarly for the English to German model.\nSo we talked about what transformers are, and what they can do for you (among other things). \nLet's get this thing running! Follow the next steps:\n- git clone https://github.com/gordicaleksa/pytorch-original-transformer\n- Open Anaconda console and navigate into project directory cd path_to_repo\n- Run conda env create from project directory (this will create a brand new conda environment).\n- Run activate pytorch-transformer (for running scripts from your console or set the interpreter in your IDE)\nThat's it! It should work out-of-the-box executing environment.yml file which deals with dependencies. \nIt may take a while as I'm automatically downloading SpaCy's statistical models for English and German.\nPyTorch pip package will come bundled with some version of CUDA/cuDNN with it, but it is highly recommended that you install a system-wide CUDA beforehand, mostly because of the GPU drivers. I also recommend using Miniconda installer as a way to get conda on your system. Follow through points 1 and 2 of this setup and use the most up-to-date versions of Miniconda and CUDA/cuDNN for your system.\nJust run jupyter notebook from you Anaconda console and it will open the session in your default browser. \nOpen The Annotated Transformer ++.ipynb and you're ready to play! \nNote: if you get DLL load failed while importing win32api: The specified module could not be found \nJust do pip uninstall pywin32 and then either pip install pywin32 or conda install pywin32 should fix it!\nYou just need to link the Python environment you created in the setup section.\nTo run the training start the training_script.py, there is a couple of settings you will want to specify:\n- --batch_size - this is important to set to a maximum value that won't give you CUDA out of memory\n- --dataset_name - Pick betweenIWSLT andWMT14 (WMT14 is not advisable until I add multi-GPU support)\n- --language_direction - Pick betweenE2G andG2E\nSo an example run (from the console) would look like this: \npython training_script.py --batch_size 1500 --dataset_name IWSLT --language_direction G2E\nThe code is well commented so you can (hopefully) understand how the training itself works. \nThe script will:\n- Dump checkpoint *.pth models into models/checkpoints/\n- Dump the final *.pth model into models/binaries/\n- Download IWSLT/WMT-14 (the first time you run it and place it under data/ )\n- Dump tensorboard data into runs/ , just runtensorboard --logdir=runs from your Anaconda\n- Periodically write some training metadata to the console\nNote: data loading is slow in torch text, and so I've implemented a custom wrapper which adds the caching mechanisms and makes things ~30x faster! (it'll be slow the first time you run stuff)\nThe second part is all about playing with the models and seeing how they translate! \nTo get some translations start the translation_script.py, there is a couple of settings you'll want to set:\n- --source_sentence - depending on the model you specify this should either be English/German sentence\n- --model_name - one of the pretrained model names:iwslt_e2g ,iwslt_g2e or your model(*)\n- --dataset_name - keep this in sync with the model,IWSLT if the model was trained on IWSLT\n- --language_direction - keep in sync,E2G if the model was trained to translate from English to German\n(*) Note: after you train your model it'll get dumped into models/binaries see what it's name is and specify it via\nthe --model_name parameter if you want to play with it for translation purpose. If you specify some of the pretrained\nmodels they'll automatically get downloaded the first time you run the translation script.\nI'll link IWSLT pretrained model links here as well: English to German and German to English.\nThat's it you can also visualize the attention check out this section. for more info.\nI tracked 3 curves while training:\n- training loss (KL divergence, batchmean)\n- validation loss (KL divergence, batchmean)\n- BLEU-4\nBLEU is an n-gram based metric for quantitatively evaluating the quality of machine translation models. \nI used the BLEU-4 metric provided by the awesome nltk Python module.\nCurrent results, models were trained for 20 epochs (DE stands for Deutch i.e. German in German 🤓):\n| Model | BLEU score | Dataset | \n|---|---|---|\n| Baseline transformer (EN-DE) | 27.8 | IWSLT val | \n| Baseline transformer (DE-EN) | 33.2 | IWSLT val | \n| Baseline transformer (EN-DE) | x | WMT-14 val | \n| Baseline transformer (DE-EN) | x | WMT-14 val | \nI got these using greedy decoding so it's a pessimistic estimate, I'll add beam decoding soon.\nImportant note: Initialization matters a lot for the transformer! I initially thought that other implementations using Xavier initialization is again one of those arbitrary heuristics and that PyTorch default init will do - I was wrong:\nYou can see here 3 runs, the 2 lower ones used PyTorch default initialization (one used mean for KL divergence\nloss and the better one used batchmean), whereas the upper one used Xavier uniform initialization!\nIdea: you could potentially also periodically dump translations for a reference batch of source sentences. \nThat would give you some qualitative insight into how the transformer is doing, although I didn't do that. \nA similar thing is done when you have hard time quantitatively evaluating your model like in GANs and NST fields.\nThe above plot is a snippet from my Azure ML run but when I run stuff locally I use Tensorboard.\nJust run tensorboard --logdir=runs from your Anaconda console and you can track your metrics during the training.\nYou can use the translation_script.py and set the --visualize_attention to True to additionally understand what your\nmodel was \"paying attention to\" in the source and target sentences.\nHere are the attentions I get for the input sentence Ich bin ein guter Mensch, denke ich.\nThese belong to layer 6 of the encoder. You can see all of the 8 multi-head attention heads.\nAnd this one belongs to decoder layer 6 of the self-attention decoder MHA (multi-head attention) module. \nYou can notice an interesting triangular pattern which comes from the fact that target tokens can't look ahead!\nThe 3rd type of MHA module is the source attending one and it looks similar to the plot you saw for the encoder. \nFeel free to play with it at your own pace!\nNote: there are obviously some bias problems with this model but I won't get into that analysis here\nYou really need a decent hardware if you wish to train the transformer on the WMT-14 dataset.\nThe authors took:\n- 12h on 8 P100 GPUs to train the baseline model and 3.5 days to train the big one.\nIf my calculations are right that amounts to ~19 epochs (100k steps, each step had ~25000 tokens and WMT-14 has ~130M src/trg tokens) for the baseline and 3x that for the big one (300k steps).\nOn the other hand it's much more feasible to train the model on the IWSLT dataset. It took me:\n- 13.2 min/epoch (1500 token batch) on my RTX 2080 machine (8 GBs of VRAM)\n- ~34 min/epoch (1500 token batch) on Azure ML's K80s (24 GBs of VRAM)\nI could have pushed K80s to 3500+ tokens/batch but had some CUDA out of memory problems.\nFinally there are a couple more todos which I'll hopefully add really soon:\n- Multi-GPU/multi-node training support (so that you can train a model on WMT-14 for 19 epochs)\n- Beam decoding (turns out it's not that easy to implement this one!)\n- BPE and shared source-target vocab (I'm using SpaCy now)\nThe repo already has everything it needs, these are just the bonus points. I've tested everything from environment setup, to automatic model download, etc.\nIf you're having difficulties understanding the code I did an in-depth overview of the paper in this video:\nI have some more videos which could further help you understand transformers:\n- My approach to understanding NLP/transformers\n- Another overview of the paper (a bit higher level)\n- A case study of how this project was developed\nI found these resources useful (while developing this one):\nI found some inspiration for the model design in the The Annotated Transformer but I found it hard to understand, and it had some bugs. It was mainly written with researchers in mind. Hopefully this repo opens up the understanding of transformers to the common folk as well! 🤓\nIf you find this code useful, please cite the following:\n@misc{Gordić2020PyTorchOriginalTransformer,\n  author = {Gordić, Aleksa},\n  title = {pytorch-original-transformer},\n  year = {2020},\n  publisher = {GitHub},\n  journal = {GitHub repository},\n  howpublished = {\\url{https://github.com/gordicaleksa/pytorch-original-transformer}},\n}\nIf you'd love to have some more AI-related content in your life 🤓, consider:\n- Subscribing to my YouTube channel The AI Epiphany 🔔\n- Follow me on LinkedIn and Twitter 💡\n- Follow me on Medium 📚 ❤️\n\n© 2026 GitHub, Inc.",
+    "content_sha256": "31d2665a43efe04bb750377baad3cc2f8219afb5eae3510a07839a05c0f24f50",
+    "published_at": null,
+    "retrieved_at": "2026-09-24 15:44:14.897549+00:00",
+    "metadata": {
+      "document": {
+        "basis": [],
+        "edition": null,
+        "version": 1,
+        "work_id": null,
+        "identifiers": [],
+        "representation": "page"
+      },
+      "sections": [],
+      "extractor": "trafilatura+identity-footer-v1",
+      "modified_at": null,
+      "requested_url": "https://github.com/gordicaleksa/pytorch-original-transformer",
+      "date_provenance": "unknown",
+      "identity_region": {
+        "end_char": 12936,
+        "start_char": 12917
+      },
+      "reference_links": [
+        {
+          "url": "https://docs.github.com/",
+          "label": "Documentation",
+          "full_text": false,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://archiveprogram.github.com/",
+          "label": "Archive Program",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.blog/",
+          "label": "Blog",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.community/",
+          "label": "Community",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://gordicaleksa.medium.com/",
+          "label": "Medium",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://maintainers.github.com/",
+          "label": "Maintainer Community",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://securitylab.github.com/",
+          "label": "Security Lab",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://skills.github.com/",
+          "label": "GitHub Skills",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://stars.github.com/",
+          "label": "GitHub Stars",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://support.github.com/",
+          "label": "Customer support",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://support.github.com/?tags=dotcom-footer",
+          "label": "Contact",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.githubstatus.com/",
+          "label": "Status",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "http://nlp.seas.harvard.edu/2018/04/03/attention.html",
+          "label": "The Annotated Transformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://arxiv.org/abs/1706.03762",
+          "label": "Vaswani et al.",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://arxiv.org/pdf/1706.03762.pdf",
+          "label": "Attention Is All You Need",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://docs.github.com/site-policy/github-terms/github-terms-of-service",
+          "label": "Terms",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://docs.github.com/site-policy/privacy-policies/github-privacy-statement",
+          "label": "Privacy",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/BLEU",
+          "label": "BLEU score",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.blog/changelog",
+          "label": "Changelog",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fgordicaleksa%2Fpytorch-original-transformer&report=gordicaleksa+%28user%29",
+          "label": "Report repository",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/actions",
+          "label": "Actions",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/activity",
+          "label": "Activity",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/.gitignore",
+          "label": ".gitignore",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/LICENCE",
+          "label": "LICENCE",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/README.md",
+          "label": "README.md",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/The%20Annotated%20Transformer%20%2B%2B.ipynb",
+          "label": "The Annotated Transformer ++.ipynb",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/attention_dec_self.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/attention_enc_self.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/bleu_score_xavier_vs_default_pt_init.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/custom_learning_rate_schedule.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/label_smoothing.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/lr_formula.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/positional_encoding_formula.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/positional_encoding_visualized.jpg",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/data/readme_pics/transformer_architecture.PNG",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/environment.yml",
+          "label": "environment.yml",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/playground.py",
+          "label": "playground.py",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/training_script.py",
+          "label": "training_script.py",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/main/translation_script.py",
+          "label": "translation_script.py",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/blob/master/LICENCE",
+          "label": "",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/branches",
+          "label": "Branches",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/commits/main/",
+          "label": "89 Commits",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/forks",
+          "label": "188 forks",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/issues",
+          "label": "Issues 9",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/projects",
+          "label": "Projects",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/pulls",
+          "label": "Pull requests 0",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/pulse",
+          "label": "Insights",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/security",
+          "label": "Security and quality 0",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/tags",
+          "label": "Tags",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/tree/main/.github",
+          "label": ".github",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/tree/main/data/readme_pics",
+          "label": "data/readme_pics",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/tree/main/models/definitions",
+          "label": "models/definitions",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/gordicaleksa/pytorch-original-transformer/tree/main/utils",
+          "label": "utils",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/login?return_to=%2Fgordicaleksa%2Fpytorch-original-transformer",
+          "label": "Notifications",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/pytorch/pytorch/blob/187e23397c075ec2f6e89ea75d24371e3fbf9efa/torch/nn/modules/transformer.py",
+          "label": "PyTorch official implementation",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/original-transformer",
+          "label": "original-transformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/pytorch-transformer",
+          "label": "pytorch-transformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/pytorch-transformers",
+          "label": "pytorch-transformers",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/transformer",
+          "label": "transformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/transformer-tutorial",
+          "label": "transformer-tutorial",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/topics/transformers",
+          "label": "transformers",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://jalammar.github.io/illustrated-transformer/",
+          "label": "this amazing blog",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://torchtext.readthedocs.io/en/latest/datasets.html",
+          "label": "WMT-14 dataset",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.aclweb.org/anthology/P02-1040.pdf",
+          "label": "BLEU is an n-gram based metric",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.dropbox.com/s/a6pfo6t9m2dh1jq/iwslt_e2g.pth?dl=1",
+          "label": "English to German",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.dropbox.com/s/dgcd4xhwig7ygqd/iwslt_g2e.pth?dl=1",
+          "label": "German to English.",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.youtube.com/c/TheAiEpiphany",
+          "label": "The AI Epiphany",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=bvBK-coXf9I",
+          "label": "My approach to understanding NLP/transformers",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=cbYxHkgkSVs",
+          "label": "in this video:",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=n9sLZPLOxG8",
+          "label": "Another overview of the paper (a bit higher level)",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=px4rtkWHFvM",
+          "label": "A case study of how this project was developed",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://youtube.com/c/TheAIEpiphany",
+          "label": "youtube.com/c/TheAIEpiphany",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fgordicaleksa%2Fpytorch-original-transformer",
+          "label": "Sign in",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=gordicaleksa%2Fpytorch-original-transformer",
+          "label": "Sign up",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://twitter.com/gordic_aleksa",
+          "label": "Twitter",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.linkedin.com/in/aleksagordic/",
+          "label": "LinkedIn",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "7bd7b09d-ff16-504f-a049-83c30aac3495",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://huggingface.co/learn/nlp-course/en/chapter1/6",
+    "canonical_url": "https://huggingface.co/learn/llm-course/en/chapter1/6",
+    "title": "Transformer Architectures · Hugging Face",
+    "publisher_key": "huggingface.co",
+    "source_type": "unknown",
+    "media_type": "text/html",
+    "content_text": "LLM Course documentation\nTransformer Architectures\nTransformer Architectures\nIn the previous sections, we introduced the general Transformer architecture and explored how these models can solve various tasks. Now, let’s take a closer look at the three main architectural variants of Transformer models and understand when to use each one. Then, we look at how those architectures are applied to different language tasks.\nIn this section, we’re going to dive deeper into the three main architectural variants of Transformer models and understand when to use each one.\nRemember that most Transformer models use one of three architectures: encoder-only, decoder-only, or encoder-decoder (sequence-to-sequence). Understanding these differences will help you choose the right model for your specific task.\nEncoder models\nEncoder models use only the encoder of a Transformer model. At each stage, the attention layers can access all the words in the initial sentence. These models are often characterized as having “bi-directional” attention, and are often called auto-encoding models.\nThe pretraining of these models usually revolves around somehow corrupting a given sentence (for instance, by masking random words in it) and tasking the model with finding or reconstructing the initial sentence.\nEncoder models are best suited for tasks requiring an understanding of the full sentence, such as sentence classification, named entity recognition (and more generally word classification), and extractive question answering.\nAs we saw in How 🤗 Transformers solve tasks, encoder models like BERT excel at understanding text because they can look at the entire context in both directions. This makes them perfect for tasks where comprehension of the whole input is important.\nRepresentatives of this family of models include:\nDecoder models\nDecoder models use only the decoder of a Transformer model. At each stage, for a given word the attention layers can only access the words positioned before it in the sentence. These models are often called auto-regressive models.\nThe pretraining of decoder models usually revolves around predicting the next word in the sentence.\nThese models are best suited for tasks involving text generation.\nDecoder models like GPT are designed to generate text by predicting one token at a time. As we explored in How 🤗 Transformers solve tasks, they can only see previous tokens, which makes them excellent for creative text generation but less ideal for tasks requiring bidirectional understanding.\nRepresentatives of this family of models include:\nModern Large Language Models (LLMs)\nMost modern Large Language Models (LLMs) use the decoder-only architecture. These models have grown dramatically in size and capabilities over the past few years, with some of the largest models containing hundreds of billions of parameters.\nModern LLMs are typically trained in two phases:\n- Pretraining: The model learns to predict the next token on vast amounts of text data\n- Instruction tuning: The model is fine-tuned to follow instructions and generate helpful responses\nThis approach has led to models that can understand and generate human-like text across a wide range of topics and tasks.\nKey capabilities of modern LLMs\nModern decoder-based LLMs have demonstrated impressive capabilities:\n| Capability | Description | Example | \n|---|---|---|\n| Text generation | Creating coherent and contextually relevant text | Writing essays, stories, or emails | \n| Summarization | Condensing long documents into shorter versions | Creating executive summaries of reports | \n| Translation | Converting text between languages | Translating English to Spanish | \n| Question answering | Providing answers to factual questions | “What is the capital of France?” | \n| Code generation | Writing or completing code snippets | Creating a function based on a description | \n| Reasoning | Working through problems step by step | Solving math problems or logical puzzles | \n| Few-shot learning | Learning from a few examples in the prompt | Classifying text after seeing just 2-3 examples | \nYou can experiment with decoder-based LLMs directly in your browser via model repo pages on the Hub. Here’s an example with the classic GPT-2 (OpenAI’s finest open source model!):\nSequence-to-sequence models\nEncoder-decoder models (also called sequence-to-sequence models) use both parts of the Transformer architecture. At each stage, the attention layers of the encoder can access all the words in the initial sentence, whereas the attention layers of the decoder can only access the words positioned before a given word in the input.\nThe pretraining of these models can take different forms, but it often involves reconstructing a sentence for which the input has been somehow corrupted (for instance by masking random words). The pretraining of the T5 model consists of replacing random spans of text (that can contain several words) with a single mask special token, and the task is then to predict the text that this mask token replaces.\nSequence-to-sequence models are best suited for tasks revolving around generating new sentences depending on a given input, such as summarization, translation, or generative question answering.\nAs we saw in How 🤗 Transformers solve tasks, encoder-decoder models like BART and T5 combine the strengths of both architectures. The encoder provides deep bidirectional understanding of the input, while the decoder generates appropriate output text. This makes them perfect for tasks that transform one sequence into another, like translation or summarization.\nPractical applications\nSequence-to-sequence models excel at tasks that require transforming one form of text into another while preserving meaning. Some practical applications include:\n| Application | Description | Example Model | \n|---|---|---|\n| Machine translation | Converting text between languages | Marian, T5 | \n| Text summarization | Creating concise summaries of longer texts | BART, T5 | \n| Data-to-text generation | Converting structured data into natural language | T5 | \n| Grammar correction | Fixing grammatical errors in text | T5 | \n| Question answering | Generating answers based on context | BART, T5 | \nHere’s an interactive demo of a sequence-to-sequence model for translation:\nRepresentatives of this family of models include:\nChoosing the right architecture\nWhen working on a specific NLP task, how do you decide which architecture to use? Here’s a quick guide:\n| Task | Suggested Architecture | Examples | \n|---|---|---|\n| Text classification (sentiment, topic) | Encoder | BERT, RoBERTa | \n| Text generation (creative writing) | Decoder | GPT, LLaMA | \n| Translation | Encoder-Decoder | T5, BART | \n| Summarization | Encoder-Decoder | BART, T5 | \n| Named entity recognition | Encoder | BERT, RoBERTa | \n| Question answering (extractive) | Encoder | BERT, RoBERTa | \n| Question answering (generative) | Encoder-Decoder or Decoder | T5, GPT | \n| Conversational AI | Decoder | GPT, LLaMA | \nWhen in doubt about which model to use, consider:\n- What kind of understanding does your task need? (Bidirectional or unidirectional)\n- Are you generating new text or analyzing existing text?\n- Do you need to transform one sequence into another?\nThe answers to these questions will guide you toward the right architecture.\nThe evolution of LLMs\nLarge Language Models have evolved rapidly in recent years, with each generation bringing significant improvements in capabilities.\nAttention mechanisms\nMost transformer models use full attention in the sense that the attention matrix is square. It can be a big computational bottleneck when you have long texts. Longformer and reformer are models that try to be more efficient and use a sparse version of the attention matrix to speed up training.\nStandard attention mechanisms have a computational complexity of O(n²), where n is the sequence length. This becomes problematic for very long sequences. The specialized attention mechanisms below help address this limitation.\nLSH attention\nReformer uses LSH attention. In the softmax(QK^t), only the biggest elements (in the softmax dimension) of the matrix QK^t are going to give useful contributions. So for each query q in Q, we can consider only the keys k in K that are close to q. A hash function is used to determine if q and k are close. The attention mask is modified to mask the current token (except at the first position), because it will give a query and a key equal (so very similar to each other). Since the hash can be a bit random, several hash functions are used in practice (determined by a n_rounds parameter) and then are averaged together.\nLocal attention\nLongformer uses local attention: often, the local context (e.g., what are the two tokens to the left and right?) is enough to take action for a given token. Also, by stacking attention layers that have a small window, the last layer will have a receptive field of more than just the tokens in the window, allowing them to build a representation of the whole sentence.\nSome preselected input tokens are also given global attention: for those few tokens, the attention matrix can access all tokens and this process is symmetric: all other tokens have access to those specific tokens (on top of the ones in their local window). This is shown in Figure 2d of the paper, see below for a sample attention mask:\nUsing those attention matrices with less parameters then allows the model to have inputs having a bigger sequence length.\nAxial positional encodings\nReformer uses axial positional encodings: in traditional transformer models, the positional encoding E is a matrix of size by, being the sequence length and the dimension of the hidden state. If you have very long texts, this matrix can be huge and take way too much space on the GPU. To alleviate that, axial positional encodings consist of factorizing that big matrix E in two smaller matrices E1 and E2, with dimensions and, such that and (with the product for the lengths, this ends up being way smaller). The embedding for time step in E is obtained by concatenating the embeddings for timestep in E1 and in E2.\nConclusion\nIn this section, we’ve explored the three main Transformer architectures and some specialized attention mechanisms. Understanding these architectural differences is crucial for selecting the right model for your specific NLP task.\nAs we move forward in the course, you’ll get hands-on experience with these different architectures and learn how to fine-tune them for your specific needs. In the next section, we’ll look at some of the limitations and biases present in these models that you should be aware of when deploying them.\nUpdate on GitHub",
+    "content_sha256": "891c88e4de8f1535e2e26de3e594639b1e573db209589fe64a9a04a21cfb34b3",
+    "published_at": null,
+    "retrieved_at": "2026-09-24 15:46:24.545172+00:00",
+    "metadata": {
+      "document": {
+        "basis": [],
+        "edition": null,
+        "version": 1,
+        "work_id": null,
+        "identifiers": [],
+        "representation": "page"
+      },
+      "sections": [
+        {
+          "level": 1,
+          "title": "LLM Course",
+          "end_char": 25,
+          "start_char": 0
+        },
+        {
+          "level": 1,
+          "title": "Transformer Architectures",
+          "end_char": 10705,
+          "start_char": 25
+        },
+        {
+          "level": 2,
+          "title": "Encoder models",
+          "end_char": 1817,
+          "start_char": 801
+        },
+        {
+          "level": 2,
+          "title": "Decoder models",
+          "end_char": 4270,
+          "start_char": 1817
+        },
+        {
+          "level": 3,
+          "title": "Modern Large Language Models (LLMs)",
+          "end_char": 4270,
+          "start_char": 2573
+        },
+        {
+          "level": 4,
+          "title": "Key capabilities of modern LLMs",
+          "end_char": 4270,
+          "start_char": 3209
+        },
+        {
+          "level": 2,
+          "title": "Sequence-to-sequence models",
+          "end_char": 6339,
+          "start_char": 4270
+        },
+        {
+          "level": 3,
+          "title": "Practical applications",
+          "end_char": 6339,
+          "start_char": 5590
+        },
+        {
+          "level": 2,
+          "title": "Choosing the right architecture",
+          "end_char": 7326,
+          "start_char": 6339
+        },
+        {
+          "level": 2,
+          "title": "The evolution of LLMs",
+          "end_char": 7480,
+          "start_char": 7326
+        },
+        {
+          "level": 2,
+          "title": "Attention mechanisms",
+          "end_char": 10147,
+          "start_char": 7480
+        },
+        {
+          "level": 3,
+          "title": "LSH attention",
+          "end_char": 8660,
+          "start_char": 8024
+        },
+        {
+          "level": 3,
+          "title": "Local attention",
+          "end_char": 9503,
+          "start_char": 8660
+        },
+        {
+          "level": 3,
+          "title": "Axial positional encodings",
+          "end_char": 10147,
+          "start_char": 9503
+        },
+        {
+          "level": 2,
+          "title": "Conclusion",
+          "end_char": 10705,
+          "start_char": 10147
+        }
+      ],
+      "extractor": "trafilatura",
+      "modified_at": null,
+      "requested_url": "https://huggingface.co/learn/nlp-course/en/chapter1/6",
+      "date_provenance": "unknown",
+      "reference_links": [
+        {
+          "url": "https://huggingface.co/chat",
+          "label": "Website HuggingChat",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://huggingface.co/collections",
+          "label": "Website Collections",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://huggingface.co/languages",
+          "label": "Website Languages",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://huggingface.co/organizations",
+          "label": "Website Organizations",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://huggingface.co/tasks",
+          "label": "Website Tasks",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://huggingface.co/docs",
+          "label": "Docs",
+          "full_text": false,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://discuss.huggingface.co/",
+          "label": "Forum",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/huggingface",
+          "label": "GitHub",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/huggingface/course/blob/main/chapters/en/chapter1/6.mdx",
+          "label": "Update on GitHub",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/en/model_doc/llama4",
+          "label": "Meta’s Llama Series",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/en/model_doc/modernbert",
+          "label": "ModernBERT",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/main/en/model_doc/gemma3",
+          "label": "Google’s Gemma Series",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/bart",
+          "label": "BART",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/bert",
+          "label": "BERT",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/distilbert",
+          "label": "DistilBERT",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/longformer",
+          "label": "Longformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/marian",
+          "label": "Marian",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/mbart",
+          "label": "mBART",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/reformer",
+          "label": "Reformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/docs/transformers/model_doc/t5",
+          "label": "T5",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/learn/llm-course/chapter1/5",
+          "label": "How 🤗 Transformers solve tasks",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/learn/llm-course/en/chapter1/3",
+          "label": "Transformers, what can they do?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/learn/llm-course/en/chapter1/4",
+          "label": "How do Transformers work?",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://huggingface.co/learn/llm-course/en/chapter1/5",
+          "label": "How 🤗 Transformers solve tasks",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "66454f49-12ad-53f7-90ae-d1469adc009c",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://proceedings.mlr.press/v70/guo17a.html",
+    "canonical_url": "https://proceedings.mlr.press/v70/guo17a.html",
+    "title": "On Calibration of Modern Neural Networks",
+    "publisher_key": "mlr.press",
+    "source_type": "unknown",
+    "media_type": "text/html",
+    "content_text": "[edit]\nOn Calibration of Modern Neural Networks\nProceedings of the 34th International Conference on Machine Learning, PMLR 70:1321-1330, 2017.\n  \n \n  \n  Abstract\n    Confidence calibration – the problem of predicting probability estimates representative of the true correctness likelihood – is important for classification models in many applications. We discover that modern neural networks, unlike those from a decade ago, are poorly calibrated. Through extensive experiments, we observe that depth, width, weight decay, and Batch Normalization are important factors influencing calibration. We evaluate the performance of various post-processing calibration methods on state-of-the-art architectures with image and document classification datasets. Our analysis and experiments not only offer insights into neural network learning, but also provide a simple and straightforward recipe for practical settings: on most datasets, temperature scaling – a single-parameter variant of Platt Scaling – is surprisingly effective at calibrating predictions.\n\nCopyright © The authors and PMLR 2026. MLResearchPress",
+    "content_sha256": "4efe3086abbe5a84707c934da88e138d6a4e05be62be1f213359c9549a3a7ac1",
+    "published_at": "2017-07-17 00:00:00+00:00",
+    "retrieved_at": "2026-09-24 15:46:05.737815+00:00",
+    "metadata": {
+      "document": {
+        "basis": [],
+        "edition": null,
+        "version": 1,
+        "work_id": null,
+        "identifiers": [],
+        "representation": "page"
+      },
+      "sections": [
+        {
+          "level": 1,
+          "title": "On Calibration of Modern Neural Networks",
+          "end_char": 1051,
+          "start_char": 7
+        },
+        {
+          "level": 4,
+          "title": "Abstract",
+          "end_char": 1051,
+          "start_char": 153
+        }
+      ],
+      "extractor": "trafilatura+identity-footer-v1",
+      "modified_at": null,
+      "requested_url": "https://proceedings.mlr.press/v70/guo17a.html",
+      "date_provenance": "explicit_page_metadata",
+      "identity_region": {
+        "end_char": 1107,
+        "start_char": 1053
+      },
+      "reference_links": [
+        {
+          "url": "http://proceedings.mlr.press/v70/guo17a/guo17a.pdf",
+          "label": "Download PDF",
+          "full_text": true,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://data.mlr.press/",
+          "label": "DMLR",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jmlr.org/",
+          "label": "JMLR",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/mlresearch/v70",
+          "label": "Github Account",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://github.com/mlresearch/v70/edit/gh-pages/_posts/2017-07-17-guo17a.md",
+          "label": "edit",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://jmlr.org/tmlr/",
+          "label": "TMLR",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://twitter.com/MLResearchPress",
+          "label": "MLResearchPress",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jmlr.org/mloss",
+          "label": "MLOSS",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "c6b685b0-fb26-5230-86f1-849e97e5a1ef",
+    "run_id": "ed01b1c4-c7f7-4f2f-97f8-3c04d1fd5f2d",
+    "requested_url": "https://www.runoob.com/pytorch/transformer-model.html",
+    "canonical_url": "https://www.runoob.com/pytorch/transformer-model.html",
+    "title": "Transformer 模型",
+    "publisher_key": "runoob.com",
+    "source_type": "unknown",
+    "media_type": "text/html",
+    "content_text": "Transformer 模型\nTransformer 是一种基于注意力机制的深度学习模型，最初由 Vaswani 等人在 2017 年的论文《Attention is All You Need》中提出。\n它彻底改变了自然语言处理（NLP）领域，并逐渐扩展到计算机视觉等几乎所有 AI 方向。\nTransformer 的核心思想是完全放弃传统的逐词处理方式（RNN），改用注意力机制让模型一次性看完整个句子，同时判断每个词与其他词的关系，从而实现更快的训练和更强的理解能力。\n为什么需要 Transformer？\n在 Transformer 出现之前，NLP 领域主要依赖 RNN（循环神经网络）系列模型（如 LSTM、GRU），它们按顺序处理文本，存在两个关键缺陷。\nRNN 的局限性\nRNN 像人类\"逐字阅读\"一样处理文本，这带来了以下问题：\n- 梯度消失：处理长文本时，模型会\"忘记\"较早的信息。例如\"我昨天在图书馆借了一本关于量子物理的书\"中，读到\"书\"时早已忘记\"我\"是主语，长距离依赖极难捕捉。\n- 无法并行：RNN 必须按顺序处理每一个词，无法利用 GPU 的并行计算能力，训练超长文本时速度极慢。\nTransformer 的解决方案\n通过自注意力机制，模型同时处理所有词，并动态计算每对词之间的关联强度，彻底解决了上述两个问题。\nRNN 顺序处理 vs Transformer 并行 + 全局注意力对比\nTransformer 整体架构\nTransformer 由编码器（Encoder）和解码器（Decoder）两大部分组成，各自由多层相同模块堆叠而成。\n类比理解：编码器好比\"读书人\"，把输入的中文句子理解为一组富含语义的向量；解码器好比\"翻译官\"，参考这些向量，一个词一个词地生成英文输出。\n以下是 Transformer 架构图，左边为编码器，右边为解码器。\nTransformer 编码器 + 解码器完整架构（橙色箭头为 Cross-Attention 信息流）\nTransformer 模型由 编码器（Encoder） 和 解码器（Decoder） 两部分组成，每部分都由多层堆叠的相同模块构成。\n编码器（Encoder）\n编码器由 NN 层相同的模块堆叠而成，每层包含两个子层：\n- 多头自注意力机制（Multi-Head Self-Attention）：计算输入序列中每个词与其他词的相关性。\n- 前馈神经网络（Feed-Forward Neural Network）：对每个词进行独立的非线性变换。\n每个子层后面都接有 残差连接（Residual Connection） 和 层归一化（Layer Normalization）。\n解码器（Decoder）\n解码器也由 NN 层相同的模块堆叠而成，每层包含三个子层：\n- 掩码多头自注意力机制（Masked Multi-Head Self-Attention）：计算输出序列中每个词与前面词的相关性（使用掩码防止未来信息泄露）。\n- 编码器-解码器注意力机制（Encoder-Decoder Attention）：计算输出序列与输入序列的相关性。\n- 前馈神经网络（Feed-Forward Neural Network）：对每个词进行独立的非线性变换。\n同样，每个子层后面都接有残差连接和层归一化。\n在 Transformer 模型出现之前，NLP 领域的主流模型是基于 RNN 的架构，如长短期记忆网络（LSTM）和门控循环单元（GRU）。这些模型通过顺序处理输入数据来捕捉序列中的依赖关系，但存在以下问题：\n- 梯度消失问题：长距离依赖关系难以捕捉。\n- 顺序计算的局限性：无法充分利用现代硬件的并行计算能力，训练效率低下。\nTransformer 通过引入自注意力机制解决了这些问题，允许模型同时处理整个输入序列，并动态地为序列中的每个位置分配不同的权重。\n核心：自注意力机制\n自注意力机制是 Transformer 最重要的组件，它回答一个问题：\"处理这个词时，我应该重点关注句子中的哪些其他词？\"\nQ、K、V 是什么？\n每个词的向量会被线性变换成三个角色：Query（查询）、Key（键）、Value（值）。\nQ、K、V 的来源与注意力计算流程\n用搜索引擎类比理解 Q/K/V：\nQ（Query）= 你在搜索框里输入的关键词，代表\"我要查什么？\"\nK（Key）= 每个网页的标题标签，代表\"我能匹配哪些词？\"\nV（Value）= 每个网页的实际内容，代表\"我能提供什么信息？\"\n注意力权重 = Q 与每个 K 的相似度，最终结果 = 用权重对所有 V 加权求和。\n注意力公式\n\\[ \\text{Attention}(Q, K, V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V \\]\n其中：\n- \\(Q\\) 是查询矩阵，\\(K\\) 是键矩阵，\\(V\\) 是值矩阵。\n- \\(d_k\\) 是向量的维度，用于缩放点积，防止梯度爆炸。\n- softmax 将原始得分转为 0~1 之间的概率分布（权重之和为 1）\n多头注意力（Multi-Head Attention）\n单一注意力视角有限，就像只用一种角度看问题。\n多头注意力将输入分成 h 个子空间，每个\"头\"独立学习不同的关注模式，最后拼接结果。\n位置编码（Positional Encoding）\nTransformer 同时处理所有词，天然没有\"顺序感\"——\"猫吃鱼\"和\"鱼吃猫\"会被当成一样的。\n位置编码就是给每个词加上\"座位号\"，告诉模型各词在句子中的位置。\n类比：就像考试时在试卷上标\"第1题、第2题\"，位置编码让 Transformer 知道\"我\"是第1个词，\"爱\"是第2个词。\n\\[ PE_{(pos, 2i)} = \\sin\\left(\\frac{pos}{10000^{2i/d_{\\text{model}}}}\\right) \\] \\[ PE_{(pos, 2i+1)} = \\cos\\left(\\frac{pos}{10000^{2i/d_{\\text{model}}}}\\right) \\]\n其中：\n\\(pos\\) 是词的位置，\\(i\\) 是维度索引。\n位置编码与词嵌入相加，给模型注入位置信息\n编码器-解码器架构\nTransformer 模型由编码器和解码器两部分组成：\n- 编码器：将输入序列转换为一系列隐藏表示。每个编码器层包含一个自注意力机制和一个前馈神经网络。\n- 解码器： 根据编码器的输出生成目标序列。每个解码器层包含两个注意力机制（自注意力和编码器-解码器注意力）和一个前馈神经网络。\n残差连接与层归一化\n每个子层（自注意力、前馈网络）输出后，会执行残差连接和层归一化两个操作，帮助深层网络稳定训练。\n残差连接让梯度\"短路\"流过，层归一化稳定训练\n- 残差连接：将子层的输入直接加到输出上（output = F(x) + x），避免深层网络的梯度消失，也让模型可以\"选择性忽略\"某层的变换。\n- 层归一化：对每层的激活值做归一化，使训练更稳定，收敛更快。\nTransformer 的优势\n相比传统的 RNN 架构，Transformer 有以下几个显著优势：\n并行计算\n同时处理整个序列，充分利用 GPU 并行能力，训练速度远超 RNN。\n长距离依赖\n自注意力机制让任意两个词之间的\"通信距离\"始终为 1，不再受序列长度限制。\n可扩展性强\n堆叠更多层、增大维度即可提升性能，催生了 BERT、GPT 等强大模型。\nTransformer 的应用\nTransformer 架构已在 AI 各领域得到广泛应用，以下按领域分类介绍。\n自然语言处理（NLP）\n计算机视觉（CV）\n多模态任务\nTransformer 的应用\n- 自然语言处理（NLP）： \n  - 机器翻译（如 Google Translate）\n  - 文本生成（如 GPT 系列模型）\n  - 文本分类、问答系统等。\n- 计算机视觉（CV）： \n  - 图像分类（如 Vision Transformer）\n  - 目标检测、图像生成等。\n- 多模态任务： \n  - 结合文本和图像的任务（如 CLIP、DALL-E）。\nPyTorch 实现示例\n以下是一个完整的 PyTorch Transformer 示例，包含详细注释帮助初学者理解每个步骤：\n实例\nimport torch.nn as nn\nimport torch.optim as optim\n# --- 定义 Transformer 模型 ---\nclass TransformerModel(nn.Module):\ndef __init__(self, input_dim, model_dim, num_heads, num_layers, output_dim):\nsuper(TransformerModel, self).__init__()\n# 词嵌入：将词索引映射为 model_dim 维向量\nself.embedding = nn.Embedding(input_dim, model_dim)\n# 位置编码：可学习的位置向量，最大支持长度 1000\nself.positional_encoding = nn.Parameter(\ntorch.zeros(1, 1000, model_dim)\n)\n# PyTorch 内置 Transformer（包含编码器 + 解码器）\nself.transformer = nn.Transformer(\nd_model=model_dim, # 向量维度\nnhead=num_heads, # 多头注意力的头数\nnum_encoder_layers=num_layers, # 编码器层数\nnum_decoder_layers=num_layers # 解码器层数\n)\n# 最终线性层：将向量映射回词汇表大小（用于预测下一个词）\nself.fc = nn.Linear(model_dim, output_dim)\ndef forward(self, src, tgt):\nsrc_seq_length = src.size(1)\ntgt_seq_length = tgt.size(1)\n# 词嵌入 + 位置编码（两者相加）\nsrc = self.embedding(src) + self.positional_encoding[:, :src_seq_length, :]\ntgt = self.embedding(tgt) + self.positional_encoding[:, :tgt_seq_length, :]\n# 通过 Transformer（编码器读 src，解码器生成 tgt）\ntransformer_output = self.transformer(src, tgt)\n# 线性层输出每个位置的词汇概率\noutput = self.fc(transformer_output)\nreturn output\n# --- 超参数设置 ---\ninput_dim = 10000 # 词汇表大小（共有多少个不同的词）\nmodel_dim = 512 # 每个词的向量维度（原论文使用 512）\nnum_heads = 8 # 多头注意力头数（需能整除 model_dim）\nnum_layers = 6 # 编码器/解码器层数（原论文使用 6）\noutput_dim = 10000 # 输出维度（与词汇表大小相同）\n# --- 初始化模型、损失函数和优化器 ---\nmodel = TransformerModel(input_dim, model_dim, num_heads, num_layers, output_dim)\ncriterion = nn.CrossEntropyLoss() # 多分类交叉熵损失\noptimizer = optim.Adam(model.parameters(), lr=0.001) # Adam 优化器\n# --- 构造示例数据（实际使用时换成真实语料） ---\n# src: 源序列（如中文），shape = (序列长度=10, 批量大小=32)\nsrc = torch.randint(0, input_dim, (10, 32))\n# tgt: 目标序列（如英文），shape = (序列长度=20, 批量大小=32)\ntgt = torch.randint(0, input_dim, (20, 32))\n# --- 前向传播 ---\noutput = model(src, tgt)\n# output.shape = (20, 32, 10000)：每个位置对词汇表的预测分布\n# --- 计算损失 ---\n# view(-1, output_dim) 将 (20,32,10000) 展平为 (640, 10000)\nloss = criterion(output.view(-1, output_dim), tgt.view(-1))\n# --- 反向传播 + 更新权重 ---\noptimizer.zero_grad() # 清空上一步的梯度\nloss.backward() # 计算梯度\noptimizer.step() # 更新参数\nprint(f\"损失值: {loss.item():.4f}\")\n上面的代码使用随机数据只是为了演示流程。实际训练时需要：\n- 1) 准备真实的平行语料（如中英翻译对）；\n- 2) 做好分词和词汇表构建；\n- 3) 实现 Decoder 的逐步推理（自回归生成）；\n- 4) 调整学习率调度策略（原论文用 Warmup）。\n总结\n从 RNN 到 Transformer 的演进，代表了深度学习领域一次重要的范式转变。\n从 RNN 到 Transformer 的演进路径\nTransformer 的三大创新彻底改变了深度学习格局：\n- 自注意力机制——让任意两词直接\"对话\"，告别梯度消失。\n- 完全并行化——训练速度质的飞跃，使大规模预训练成为可能。\n- 通用架构——从 NLP 到 CV、多模态，Transformer 已成为 AI 时代的\"通用积木\"。\n掌握 Transformer，你就掌握了理解 GPT、BERT、Stable Diffusion 等现代 AI 模型的钥匙。\n相关术语速查\n| 术语 | 英文 | 说明 | \n|---|---|---|\n| 自注意力 | Self-Attention | 计算序列内各元素之间相关性的机制 | \n| 多头注意力 | Multi-Head Attention | 多个注意力头并行计算，捕捉不同特征子空间的信息 | \n| 位置编码 | Positional Encoding | 为模型提供序列中元素位置信息的技术 | \n| 残差连接 | Residual Connection | 将输入直接加到子层输出上，缓解梯度消失 | \n| 层归一化 | Layer Normalization | 对每层激活值归一化，加速训练收敛 | \n| 编码器 | Encoder | 将输入序列编码为上下文表示 | \n| 解码器 | Decoder | 根据编码器输出生成目标序列 | \n| 交叉注意力 | Cross-Attention | 解码器关注编码器输出的注意力机制 | \n| 掩码注意力 | Masked Attention | 解码器中防止关注未来位置信息的机制 | \n| 前馈网络 | Feed-Forward Network | 对每个位置独立应用的全连接层 | ",
+    "content_sha256": "efa1e97ba1fc407130701f264ac17a1c10eaaa0552ac6900f2a6d55580862636",
+    "published_at": null,
+    "retrieved_at": "2026-09-24 15:47:04.895559+00:00",
+    "metadata": {
+      "document": {
+        "basis": [],
+        "edition": null,
+        "version": 1,
+        "work_id": null,
+        "identifiers": [],
+        "representation": "page"
+      },
+      "sections": [
+        {
+          "level": 1,
+          "title": "Transformer 模型",
+          "end_char": 6490,
+          "start_char": 0
+        },
+        {
+          "level": 2,
+          "title": "为什么需要 Transformer？",
+          "end_char": 609,
+          "start_char": 237
+        },
+        {
+          "level": 3,
+          "title": "RNN 的局限性",
+          "end_char": 506,
+          "start_char": 334
+        },
+        {
+          "level": 3,
+          "title": "Transformer 的解决方案",
+          "end_char": 609,
+          "start_char": 506
+        },
+        {
+          "level": 2,
+          "title": "Transformer 整体架构",
+          "end_char": 1623,
+          "start_char": 609
+        },
+        {
+          "level": 3,
+          "title": "编码器（Encoder）",
+          "end_char": 652,
+          "start_char": 639
+        },
+        {
+          "level": 3,
+          "title": "解码器（Decoder）",
+          "end_char": 1623,
+          "start_char": 652
+        },
+        {
+          "level": 2,
+          "title": "核心：自注意力机制",
+          "end_char": 2226,
+          "start_char": 1623
+        },
+        {
+          "level": 3,
+          "title": "Q、K、V 是什么？",
+          "end_char": 1928,
+          "start_char": 1695
+        },
+        {
+          "level": 3,
+          "title": "注意力公式",
+          "end_char": 2132,
+          "start_char": 1928
+        },
+        {
+          "level": 3,
+          "title": "多头注意力（Multi-Head Attention）",
+          "end_char": 2226,
+          "start_char": 2132
+        },
+        {
+          "level": 2,
+          "title": "位置编码（Positional Encoding）",
+          "end_char": 2765,
+          "start_char": 2226
+        },
+        {
+          "level": 3,
+          "title": "编码器-解码器架构",
+          "end_char": 2765,
+          "start_char": 2612
+        },
+        {
+          "level": 2,
+          "title": "残差连接与层归一化",
+          "end_char": 2950,
+          "start_char": 2765
+        },
+        {
+          "level": 2,
+          "title": "Transformer 的优势",
+          "end_char": 3129,
+          "start_char": 2950
+        },
+        {
+          "level": 4,
+          "title": "并行计算",
+          "end_char": 3042,
+          "start_char": 3002
+        },
+        {
+          "level": 4,
+          "title": "长距离依赖",
+          "end_char": 3086,
+          "start_char": 3042
+        },
+        {
+          "level": 4,
+          "title": "可扩展性强",
+          "end_char": 3129,
+          "start_char": 3086
+        },
+        {
+          "level": 2,
+          "title": "Transformer 的应用",
+          "end_char": 3214,
+          "start_char": 3129
+        },
+        {
+          "level": 3,
+          "title": "自然语言处理（NLP）",
+          "end_char": 3198,
+          "start_char": 3186
+        },
+        {
+          "level": 3,
+          "title": "计算机视觉（CV）",
+          "end_char": 3208,
+          "start_char": 3198
+        },
+        {
+          "level": 3,
+          "title": "多模态任务",
+          "end_char": 3214,
+          "start_char": 3208
+        },
+        {
+          "level": 2,
+          "title": "Transformer 的应用",
+          "end_char": 3414,
+          "start_char": 3214
+        },
+        {
+          "level": 2,
+          "title": "PyTorch 实现示例",
+          "end_char": 3478,
+          "start_char": 3414
+        },
+        {
+          "level": 2,
+          "title": "实例",
+          "end_char": 5691,
+          "start_char": 3478
+        },
+        {
+          "level": 2,
+          "title": "总结",
+          "end_char": 5971,
+          "start_char": 5691
+        },
+        {
+          "level": 2,
+          "title": "相关术语速查",
+          "end_char": 6490,
+          "start_char": 5971
+        }
+      ],
+      "extractor": "trafilatura",
+      "modified_at": null,
+      "requested_url": "https://www.runoob.com/pytorch/transformer-model.html",
+      "date_provenance": "unknown",
+      "reference_links": [
+        {
+          "url": "https://www.runoob.com/hosting/hosting-tutorial.html",
+          "label": "网站主机教程",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://www.runoob.com/quality/quality-tutorial.html",
+          "label": "网站品质",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://www.runoob.com/web/web-buildingprimer.html",
+          "label": "网站建设指南",
+          "full_text": false,
+          "documentation": false,
+          "official_link": true
+        },
+        {
+          "url": "https://www.runoob.com/html/html-tutorial.html",
+          "label": "HTML",
+          "full_text": true,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://www.runoob.com/restfulapi/restful-api-tutorial.html",
+          "label": "RESTful API 教程",
+          "full_text": false,
+          "documentation": true,
+          "official_link": false
+        },
+        {
+          "url": "https://beian.miit.gov.cn/",
+          "label": "闽ICP备15012807号-1",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://monkeycode-ai.com/?ic=019d94af-c5d0-7207-a923-89d7ccf67d91",
+          "label": "MonkeyCode 在线 Vibe Coding，用想法驱动开发，支持 Astra，GPT 等。",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "http://www.runoob.com/pytorch/pytorch-transformer-model.html",
+          "label": "PyTorch 构建 Transformer 模型",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jyshare.com/front-end/53",
+          "label": "JSON 格式化工具",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jyshare.com/front-end/6232/",
+          "label": "PNG/JPEG 图片压缩",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jyshare.com/front-end/6680/",
+          "label": "随机数生成器",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.jyshare.com/front-end/6939/",
+          "label": "JS 混淆/加密",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.runoob.com/pytorch/pytorch-transformer-model.html",
+          "label": "PyTorch Transformer",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.trae.cn/sem/",
+          "label": "Trae AI 原生开发环境，让编程更高效。",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        },
+        {
+          "url": "https://www.volcengine.com/activity/codingplan",
+          "label": "字节 Coding Plan 限时 9.9 元起，支持 Deepseek-V4、GLM-5.3、Doubao-Seed-Evolving、Kimi-K3。",
+          "full_text": false,
+          "documentation": false,
+          "official_link": false
+        }
+      ]
+    }
+  }
+]

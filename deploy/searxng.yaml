@@ -1,0 +1,28 @@
+use_default_settings: true
+general:
+  debug: false
+  instance_name: ReadLess Search Agent
+server:
+  bind_address: 0.0.0.0
+  port: 8080
+  secret_key: local-search-not-publicly-exposed
+  limiter: false
+  image_proxy: false
+search:
+  safe_search: 0
+  formats: [html, json]
+ui:
+  static_use_hash: true
+engines:
+  - name: bing
+    disabled: false
+  - name: yahoo
+    disabled: false
+  - name: google cse
+    disabled: true
+  - name: duckduckgo
+    disabled: true
+  - name: brave
+    disabled: true
+  - name: wikipedia
+    disabled: true

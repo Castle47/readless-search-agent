@@ -1,0 +1,249 @@
+{
+  "$defs": {
+    "Criterion": {
+      "additionalProperties": false,
+      "properties": {
+        "criterion_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Criterion Id",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Description",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "authoritative_fact",
+            "corroborated"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "facet_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Facet Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "criterion_id",
+        "description",
+        "kind"
+      ],
+      "title": "Criterion",
+      "type": "object"
+    },
+    "FacetAssignment": {
+      "additionalProperties": false,
+      "properties": {
+        "facet_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Facet Id",
+          "type": "string"
+        },
+        "task_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Task Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "facet_id",
+        "task_ids"
+      ],
+      "title": "FacetAssignment",
+      "type": "object"
+    },
+    "ResearchTask": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Question",
+          "type": "string"
+        },
+        "facet_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Facet Ids",
+          "type": "array"
+        },
+        "priority": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Priority",
+          "type": "integer"
+        },
+        "scope": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Scope",
+          "type": "string"
+        },
+        "exclusions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Exclusions",
+          "type": "array"
+        },
+        "seed_queries": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "title": "Seed Queries",
+          "type": "array"
+        },
+        "source_targets": {
+          "items": {
+            "enum": [
+              "official",
+              "paper",
+              "repository",
+              "independent",
+              "discussion",
+              "unknown"
+            ],
+            "type": "string"
+          },
+          "title": "Source Targets",
+          "type": "array"
+        },
+        "success_criteria": {
+          "items": {
+            "$ref": "#/$defs/Criterion"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "title": "Success Criteria",
+          "type": "array"
+        },
+        "parent_gap_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Parent Gap Ids",
+          "type": "array"
+        },
+        "task_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Task Id",
+          "type": "string"
+        },
+        "max_rounds": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Max Rounds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "question",
+        "facet_ids",
+        "priority",
+        "scope",
+        "exclusions",
+        "seed_queries",
+        "source_targets",
+        "success_criteria",
+        "parent_gap_ids",
+        "task_id",
+        "max_rounds"
+      ],
+      "title": "ResearchTask",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "plan_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "batch_no": {
+      "enum": [
+        0,
+        1
+      ],
+      "title": "Batch No",
+      "type": "integer"
+    },
+    "outline": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Outline",
+      "type": "array"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/ResearchTask"
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "title": "Tasks",
+      "type": "array"
+    },
+    "facet_assignments": {
+      "items": {
+        "$ref": "#/$defs/FacetAssignment"
+      },
+      "title": "Facet Assignments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "plan_id",
+    "run_id",
+    "batch_no",
+    "outline",
+    "tasks",
+    "facet_assignments"
+  ],
+  "title": "ResearchPlan",
+  "type": "object"
+}

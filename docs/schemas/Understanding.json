@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "Facet": {
+      "additionalProperties": false,
+      "properties": {
+        "facet_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Facet Id",
+          "type": "string"
+        },
+        "question": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Question",
+          "type": "string"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "facet_id",
+        "question",
+        "required"
+      ],
+      "title": "Facet",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "standalone_query": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Standalone Query",
+      "type": "string"
+    },
+    "intent": {
+      "enum": [
+        "fact",
+        "comparison",
+        "explanation",
+        "survey"
+      ],
+      "title": "Intent",
+      "type": "string"
+    },
+    "assumptions": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "facets": {
+      "items": {
+        "$ref": "#/$defs/Facet"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Facets",
+      "type": "array"
+    },
+    "source_policy": {
+      "enum": [
+        "primary_required",
+        "primary_preferred"
+      ],
+      "title": "Source Policy",
+      "type": "string"
+    },
+    "freshness": {
+      "enum": [
+        "current",
+        "historical",
+        "timeless"
+      ],
+      "title": "Freshness",
+      "type": "string"
+    },
+    "search_languages": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "title": "Search Languages",
+      "type": "array"
+    },
+    "reader_goal": {
+      "default": "",
+      "title": "Reader Goal",
+      "type": "string"
+    },
+    "needs_discovery": {
+      "default": false,
+      "title": "Needs Discovery",
+      "type": "boolean"
+    },
+    "search_terms": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Search Terms",
+      "type": "array"
+    }
+  },
+  "required": [
+    "standalone_query",
+    "intent",
+    "assumptions",
+    "facets",
+    "source_policy",
+    "freshness",
+    "search_languages"
+  ],
+  "title": "Understanding",
+  "type": "object"
+}

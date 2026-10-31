@@ -1,0 +1,282 @@
+{
+  "id": "e8c2aab8-2fc9-425c-b280-cd939bb4063b",
+  "owner_id": "local",
+  "request": {
+    "as_of": "2026-09-24T09:22:37.992172+00:00",
+    "query": "介绍一下原生的 transformer 模型",
+    "limits": {
+      "search_calls": null,
+      "total_tokens": null,
+      "wall_seconds": null,
+      "fetched_pages": null
+    },
+    "context": "用户：介绍一下 Jev 模型\n上次实验回答（尚未通过完整验收，事实需重新核验）：# Jev 模型是什么？\n\nJev 是 TypeSafe AI 发布的一款面向自动化的模型，属于该公司所称的 **System One Models**。它不是以生成文章、聊天回复或代码为主要目标，而是把一段非结构化状态转换成软件可以直接使用的、带概率的结构化决策。TypeSafe 将它概括为：\n\n> “非结构化状态输入，带类型的概率性决策输出。”  \n> ——TypeSafe AI，官方介绍：[S0](https://typesafe.ai/blog/introducing-system-one-models-and-jev)\n\n截至资料日期，Jev 处于 early access（早期访问）阶段，因此下面关于性能、价格和速度的表述，主要是 TypeSafe 的产品方描述，并不等同于独立评测结论。\n\n## 它解决的是什么问题？\n\n普通大语言模型（LLM）擅长生成文字。例如，你可以让模型阅读一封邮件，然后回答：\n\n> “这封邮件讲了什么？应该怎么回复？”\n\n但如果要把模型接入软件，文字并不总是方便。程序通常需要明确的值，例如：\n\n```text\n主题 = billing\n紧急程度 = 8\n是否需要人工审核 = 0.93\n```\n\n传统 LLM 返回的是字符串，程序还要从字符串中解析字段、检查格式，并处理模型可能输出额外内容、格式错误或不符合预期的值。TypeSafe 认为，这种“先生成文字、再解析成数据”的方式不适合延迟敏感、需要稳定运行的自动化流程。[S0](https://typesafe.ai/blog/introducing-system-one-models-and-jev)\n\nJev 的定位正相反：它不以自由生成文字为目标，而是回答预先定义好的、范围明确的问题，并返回规定类型的结果。比如：\n\n- 从几个标签中选一个；\n- 在一个有定义的等级上打分；\n- 判断某个命题为真的概率。\n\n这使它更像是一个可以嵌入程序的“智能判断函数”，而不是一个聊天机器人。\n\n## Jev 的基本工作方式\n\n可以把一次 Jev 调用抽象成三步：\n\n1. **输入状态**：提供文本、记录、告警、订单信息或其他上下文；\n2. **提出结构化问题**：规定模型要回答什么，以及答案的类型；\n3. **得到带概率的结果**：程序根据结果和阈值决定下一步动作。\n\nTypeSafe 的文档把这种问题分成三类基本形式：[S4](https://docs.typesafe.ai/introduction)\n\n### 1. Choice：从固定选项中选择\n\n例如，把客服消息分为：\n\n```text\nbilling / bug / account / feature\n```\n\n返回值只能是预先定义的某个选项，而不是任意一段文字。\n\n### 2. Score：在有序尺度上评分\n\n例如，为安全告警评估风险等级，或为销售线索评估优先级。评分尺度需要事先用文字说明含义；资料中的 API 示例介绍了 2–10 的等级，并允许返回小数分数。[S3](https://jevmodel.org/api/)\n\n### 3. Noul：判断命题成立的概率\n\n资料把 Noul 描述为一种经过校准的真假概率，适合表达：\n\n- 是否应该升级处理；\n- 是否允许自动通过；\n- 是否需要人工复核。\n\n这里的概率不是“模型随口给出的信心值”这一概念，而是产品试图校准的一部分：理论上，给出 0.8 的结果的样本，长期来看应有约 80% 的判断为真。不过，概率是否真的达到这种校准水平，需要在具体任务和数据上独立验证；一般来说，模型输出的置信度并不会天然可靠。[S6](https://proceedings.mlr.press/v70/guo17a.html)\n\n同一次请求还可以提出多个彼此独立的问题。TypeSafe 称这些问题会针对同一状态并行评估；因此，可以同时询问主题、严重程度和是否升级，而不是为每个问题单独处理。[S4](https://docs.typesafe.ai/introduction)\n\n## 一个完整示意例子\n\n下面是一个**示意性例子**，用于说明工作方式；它不代表某个实际部署、实测结果或本文之外的官方接口。\n\n### 输入\n\n一家公司的安全系统收到以下状态：\n\n```text\n服务器 srv-17 在过去 10 分钟内出现 35 次异常登录失败。\n这些请求来自 8 个不同国家/地区，其中 6 个地址此前没有出现过。\n服务器承载内部报表服务，目前仍可正常访问。\n```\n\n应用程序可以定义三个问题：\n\n```text\n问题一：告警类型\n可选值：正常波动、密码攻击、账号泄露、其他\n\n问题二：风险等级\n范围：2–10\n2 表示影响很小，10 表示正在发生且影响严重的安全事件\n\n问题三：是否应立即隔离服务器\n返回：该命题为真的概率\n```\n\n### 示例结果\n\nJev 可能返回类似这样的结构：\n\n```text\n告警类型 = 密码攻击\n风险等级 = 8.4\n立即隔离概率 = 0.78\n```\n\n这里最重要的不是模型写了一段解释，而是结果可以直接交给程序处理。\n\n### 后续动作\n\n应用代码可以制定明确规则：\n\n```text\n如果风险等级 >= 8 且立即隔离概率 >= 0.90：\n    自动隔离服务器\n\n如果风险等级 >= 8 但概率在 0.60–0.90：\n    立刻通知安全分析师，暂不自动隔离\n\n否则：\n    记录告警，进入常规队列\n```\n\n在这个例子中，Jev 的结果是 8.4 和 0.78，所以系统不会盲目自动隔离，而是把事件升级给人工分析师。也就是说，**模型负责判断，程序负责阈值、流程和最终控制**。TypeSafe 官方文档也强调，应根据概率设置自动执行或人工复核的边界。[S1](https://typesafe.ai/)\n\n## Jev 与普通 LLM 的主要区别\n\n| 方面 | 普通 LLM | Jev |\n|---|---|---|\n| 主要输出 | 文本字符串 | 预先规定类型的结构化值 |\n| 典型用途 | 对话、写作、代码、复杂解释 | 分类、评分、路由、审核和分支判断 |\n| 生成方式 | 通常逐个生成 token | TypeSafe 称其采用并行采样 |\n| 不确定性 | 即使要求，也可能给出不稳定的置信度 | 每个决策都附带概率或置信度信息 |\n| 接入软件的方式 | 通常需要解析、校验和防错 | 输出结构由问题定义限制 |\n| 适合的任务 | 开放式、需要长篇生成的任务 | 狭窄、明确、可组合的判断任务 |\n\nTypeSafe 宣称，Jev 放弃了自由字符串生成，因此不能像普通 LLM 那样直接写长篇答案；作为交换，它针对结构化输出进行了优化，并且不会产生**类型错误**。[S0](https://typesafe.ai/blog/introducing-system-one-models-and-jev)\n\n这里需要区分两件事：\n\n- **类型安全**：结果符合规定的结构，例如只能返回既定标签，或分数落在规定范围内；\n- **事实正确**：模型对现实世界的判断确实正确。\n\n前者并不自动保证后者。一个模型可以格式完全正确地输出“风险等级=8”，但判断仍可能错。因此，业务系统仍需设置阈值、记录结果、抽样检查，并为不确定结果准备回退路径。相关资料也建议记录输入、输出、概率、模型版本和后续结果，并将低置信度案例交给更强模型或人工处理。[S3](https://jevmodel.org/api/)\n\n## Jev 适合哪些场景？\n\nJev 特别适合“软件已经知道大致流程，但其中某些判断靠固定规则很难完成”的地方。典型用途包括：\n\n- **智能路由**：把客服请求分到计费、故障、账户或功能部门；\n- **风控和审核**：判断发票、报销单或交易是否需要人工检查；\n- **安全运营**：决定关闭告警、交给分析师，还是立即采取措施；\n- **内容和行为审核**：给事件打分，判断是否升级；\n- **大规模数据处理**：为大量记录抽取标签、特征或风险分数；\n- **实时应用**：在对延迟敏感的产品中执行短判断；\n- **检查其他模型**：评分、验证或拦截另一个 LLM 的提示词、推理过程和输出。\n\nTypeSafe 的工作流资料还建议把复杂任务拆成多个狭窄问题，再由代码组合。例如不要直接问“这份创业计划值不值得投资”，而是分别判断市场规模、技术可行性和差异化程度，再用程序中的权重合成结果。[S2](https://evals.typesafe.ai/)\n\n## 如何理解它的性能宣传？\n\nTypeSafe 官方介绍称，Jev 在 System One 类任务上可以达到与现有 LLM 类似的智能水平，同时速度和效率高出很多；其对比表还给出了约 70–500 毫秒的端到端响应时间，并宣称在特定查询上可达到数十倍到数百倍的速度差异。[S0](https://typesafe.ai/blog/introducing-system-one-models-and-jev)\n\n这些数字应谨慎理解：\n\n- 它们是产品方资料中的说法；\n- 比较结果取决于输入长度、问题类型、硬件、模型配置和是否包含解析、重试及业务代码；\n- 结构化输出更适合狭窄判断，并不意味着它在开放式写作或复杂长链推理中替代普通 LLM；\n- 产品方资料本身也说明，一些演示输入经过简化，且部分比较存在选择和测量口径限制。[S0](https://typesafe.ai/blog/introducing-system-one-models-and-jev)\n\n## 一句话总结\n\n**Jev 是一个面向软件自动化的结构化决策模型：输入一段业务状态，针对预先定义的问题返回分类、分数或概率，程序再依据这些结果进行路由、审核、升级或执行。**\n\n它的核心价值不在于“比聊天模型更会写文字”，而在于把模型的判断收敛成更容易校验、组合和接入业务流程的程序数据；但类型安全和概率输出仍不等于绝对正确，实际使用时必须配合阈值、日志、评估和人工回退机制。",
+    "time_range": null,
+    "memory_mode": "read_write",
+    "schema_version": 1,
+    "allowed_domains": [],
+    "blocked_domains": [],
+    "output_language": "zh-CN"
+  },
+  "config": {
+    "app": {
+      "owner_id": "local",
+      "max_concurrent_runs": 1
+    },
+    "fetch": {
+      "chunk_chars": 2500,
+      "max_redirects": 3,
+      "max_text_chars": 100000,
+      "chunks_per_page": 4,
+      "timeout_seconds": 20,
+      "max_response_bytes": 2097152,
+      "chunk_overlap_chars": 200
+    },
+    "model": {
+      "roles": {
+        "gap": {
+          "max_input": 3000,
+          "max_output": 800
+        },
+        "merge": {
+          "max_input": 3000,
+          "max_output": 1200
+        },
+        "editor": {
+          "max_input": 20000,
+          "max_output": 4000
+        },
+        "reason": {
+          "max_input": 2500,
+          "max_output": 400
+        },
+        "repair": {
+          "max_input": 4000,
+          "max_output": 1500
+        },
+        "writer": {
+          "max_input": 12000,
+          "max_output": 4000
+        },
+        "extract": {
+          "max_input": 6000,
+          "max_output": 1600
+        },
+        "planner": {
+          "max_input": 4000,
+          "max_output": 1500
+        },
+        "quality": {
+          "max_input": 5000,
+          "total_cap": 6000,
+          "max_output": 1000
+        },
+        "understand": {
+          "max_input": 3000,
+          "max_output": 800
+        },
+        "source_reader": {
+          "max_input": 6000,
+          "max_output": 1600
+        },
+        "report_verifier": {
+          "max_input": 12000,
+          "total_cap": 40000,
+          "max_output": 2400,
+          "max_paragraphs": 4
+        },
+        "evidence_verifier": {
+          "max_input": 6000,
+          "max_output": 1200
+        },
+        "memory_candidates": {
+          "max_input": 2000,
+          "max_output": 1000
+        }
+      },
+      "temperature": null,
+      "timeout_seconds": 45,
+      "finalization_split": {
+        "writer": 16000,
+        "quality": 6000,
+        "report_verifier": 40000,
+        "repair_and_recheck": 34000
+      }
+    },
+    "retry": {
+      "jitter_ms": 250,
+      "max_attempts": 3,
+      "backoff_seconds": [
+        1,
+        2
+      ],
+      "retry_after_cap_seconds": 30,
+      "structured_repair_attempts": 1
+    },
+    "memory": {
+      "scope": "research-general",
+      "recall_top_k": 5,
+      "max_new_items": 5,
+      "timeout_seconds": 10,
+      "block_char_limits": {
+        "open_questions": 4000,
+        "research_policy": 2000,
+        "source_patterns": 4000,
+        "research_lessons": 4000
+      },
+      "recall_token_limit": 2000,
+      "outbox_max_attempts": 6,
+      "reconcile_max_checks": 10,
+      "reconcile_interval_seconds": 60,
+      "outbox_retry_delays_seconds": [
+        10,
+        60,
+        300,
+        1800,
+        3600
+      ]
+    },
+    "search": {
+      "timeout_seconds": 15
+    },
+    "worker": {
+      "lease_seconds": 30,
+      "heartbeat_seconds": 10,
+      "cancel_poll_seconds": 1,
+      "graph_recursion_limit": 1000
+    },
+    "model_id": "openai/gpt-5.6-luna",
+    "owner_id": "local",
+    "research": {
+      "search_calls": 16,
+      "total_tokens": 300000,
+      "wall_seconds": 600,
+      "fetched_pages": 30,
+      "initial_tasks": 3,
+      "search_results": 5,
+      "pages_per_round": 2,
+      "rounds_per_task": 3,
+      "token_partitions": {
+        "memory": 8000,
+        "research": 196000,
+        "finalization": 96000
+      },
+      "llm_http_attempts": 200,
+      "max_initial_tasks": 5,
+      "no_progress_rounds": 2,
+      "supplemental_tasks": 2,
+      "fetch_http_attempts": 90,
+      "finalization_seconds": 180,
+      "parallel_researchers": 3,
+      "search_http_attempts": 48,
+      "min_supplemental_tokens": 20000,
+      "max_supplemental_batches": 1,
+      "min_supplemental_seconds": 60,
+      "supplemental_rounds_per_task": 2
+    },
+    "tokenizer": "o200k_base",
+    "config_hash": "25bdb48ab46baccca78617c6d0e337dd17e90a37492107de87367a10c5416813",
+    "prompt_hash": "d93bb63878df3af3a3d8a166ce717c6a0407469b13a4a68718bc72081f65bb17",
+    "prompt_version": "2",
+    "schema_version": 1,
+    "adapter_version": "26",
+    "web_dns_endpoint": "https://cloudflare-dns.com/dns-query",
+    "editorial_workflow_version": 1,
+    "finalization_rollover_version": 1,
+    "source_first_workflow_version": 1
+  },
+  "request_hash": "a948433d8352fc99cd7fa40fc64fe00fd775ad4d6c543f19030e2e7432ca720d",
+  "idempotency_key": "38b504ea-ac9e-498f-9522-2135dbbd9d46",
+  "status": "completed",
+  "created_at": "2026-09-24 09:22:37.992172+00:00",
+  "started_at": "2026-09-24 09:22:38.566314+00:00",
+  "deadline_at": "2026-09-24 09:32:38.566314+00:00",
+  "finished_at": "2026-09-24 09:25:17.840589+00:00",
+  "stop_reason": null,
+  "error": null,
+  "report_id": "e9dc116c-8772-595d-9713-e9fe401ed437",
+  "lease_owner": "54a00d3a-cfce-44c7-bf25-263bfe8de437",
+  "lease_until": "2026-09-24 09:25:42.382874+00:00",
+  "fence": 1,
+  "cancel_requested": false,
+  "phase": "completed",
+  "warnings": [
+    {
+      "code": "understand_degraded"
+    },
+    {
+      "code": "memory.degraded"
+    },
+    {
+      "code": "planner_degraded",
+      "reason": "input_budget_exceeded",
+      "batch_no": 0
+    },
+    {
+      "code": "search.degraded",
+      "engines": [
+        "wikidata"
+      ]
+    },
+    {
+      "code": "fetch.failed",
+      "reason": "unsupported_content",
+      "task_id": "f7cac527-54dd-55fb-868b-eae0c066eed1"
+    },
+    {
+      "code": "model.output_invalid",
+      "role": "report_verifier",
+      "detail": "An accepted atom needs original source premises; pure discourse needs no atom",
+      "attempt": 1,
+      "operation_key": "source-audit:53640b604b08b7bdf2c8b3c120c811f0fddc4b6565515c5eee3f1f437b95c020"
+    }
+  ],
+  "coverage": 1.0,
+  "memory_status": "applied",
+  "budget": {
+    "limits": {
+      "search_calls": 16,
+      "total_tokens": 300000,
+      "wall_seconds": 600,
+      "fetched_pages": 30,
+      "tokens_memory": 8000,
+      "tokens_writer": 4505,
+      "tokens_quality": 2948,
+      "tokens_research": 196000,
+      "llm_http_attempts": 200,
+      "fetch_http_attempts": 90,
+      "tokens_finalization": 96000,
+      "search_http_attempts": 48,
+      "tokens_report_verifier": 19059,
+      "tokens_repair_and_recheck": 69488
+    },
+    "reserved": {
+      "total_tokens": 0,
+      "tokens_memory": 0,
+      "tokens_writer": 0,
+      "tokens_quality": 0,
+      "tokens_research": 0,
+      "llm_http_attempts": 0,
+      "fetch_http_attempts": 0,
+      "tokens_finalization": 0,
+      "search_http_attempts": 0,
+      "tokens_report_verifier": 0,
+      "tokens_repair_and_recheck": 0
+    },
+    "used": {
+      "search_calls": 3,
+      "total_tokens": 56860,
+      "fetched_pages": 5,
+      "tokens_memory": 811,
+      "tokens_writer": 4505,
+      "tokens_quality": 2948,
+      "tokens_research": 19113,
+      "llm_http_attempts": 17,
+      "fetch_http_attempts": 9,
+      "tokens_finalization": 36936,
+      "search_http_attempts": 3,
+      "tokens_report_verifier": 19059,
+      "tokens_repair_and_recheck": 10424
+    }
+  }
+}

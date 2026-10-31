@@ -1,0 +1,657 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "citation_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Citation Id",
+          "type": "string"
+        },
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "claim_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "ordinal": {
+          "exclusiveMinimum": 0,
+          "title": "Ordinal",
+          "type": "integer"
+        },
+        "paragraph_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paragraph Id"
+        },
+        "start_char": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Char"
+        },
+        "end_char": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Char"
+        }
+      },
+      "required": [
+        "citation_id",
+        "statement_id",
+        "claim_id",
+        "evidence_id",
+        "ordinal"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "ExecutionSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "const": "openai/gpt-5.6-luna",
+          "title": "Model Id",
+          "type": "string"
+        },
+        "search_calls": {
+          "minimum": 0,
+          "title": "Search Calls",
+          "type": "integer"
+        },
+        "fetched_pages": {
+          "minimum": 0,
+          "title": "Fetched Pages",
+          "type": "integer"
+        },
+        "tokens": {
+          "minimum": 0,
+          "title": "Tokens",
+          "type": "integer"
+        },
+        "unknown_tokens": {
+          "minimum": 0,
+          "title": "Unknown Tokens",
+          "type": "integer"
+        },
+        "stop_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Stop Reason"
+        },
+        "memory_status": {
+          "enum": [
+            "off",
+            "read_only",
+            "skipped",
+            "pending",
+            "applied",
+            "degraded",
+            "needs_reconciliation",
+            "dead_letter"
+          ],
+          "title": "Memory Status",
+          "type": "string"
+        },
+        "cost_usd": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Usd"
+        },
+        "known_cost_usd": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Known Cost Usd"
+        }
+      },
+      "required": [
+        "model_id",
+        "search_calls",
+        "fetched_pages",
+        "tokens",
+        "unknown_tokens",
+        "stop_reason",
+        "memory_status"
+      ],
+      "title": "ExecutionSummary",
+      "type": "object"
+    },
+    "NarrativeAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "inference",
+            "recommendation",
+            "example"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "anchor": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Anchor",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "text",
+        "kind",
+        "claim_ids",
+        "evidence_ids",
+        "anchor"
+      ],
+      "title": "NarrativeAssertion",
+      "type": "object"
+    },
+    "NarrativeDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": 2,
+          "enum": [
+            2,
+            3
+          ],
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "title": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Title",
+          "type": "string"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/NarrativeSection"
+          },
+          "title": "Sections",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "unresolved_questions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Unresolved Questions",
+          "type": "array"
+        },
+        "coverage": {
+          "items": {
+            "$ref": "#/$defs/QuestionCoverage"
+          },
+          "title": "Coverage",
+          "type": "array"
+        },
+        "paragraph_answers": {
+          "additionalProperties": {
+            "items": {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Paragraph Answers",
+          "type": "object"
+        },
+        "quality_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "passed",
+            "revised",
+            "not_checked",
+            "issues_remaining"
+          ],
+          "title": "Quality Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "sections",
+        "limitations",
+        "unresolved_questions"
+      ],
+      "title": "NarrativeDraft",
+      "type": "object"
+    },
+    "NarrativeParagraph": {
+      "additionalProperties": false,
+      "properties": {
+        "block_type": {
+          "default": "paragraph",
+          "enum": [
+            "paragraph",
+            "list",
+            "table",
+            "code"
+          ],
+          "title": "Block Type",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Language"
+        },
+        "illustrative": {
+          "default": false,
+          "title": "Illustrative",
+          "type": "boolean"
+        },
+        "paragraph_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Paragraph Id",
+          "type": "string"
+        },
+        "assertions": {
+          "items": {
+            "$ref": "#/$defs/NarrativeAssertion"
+          },
+          "minItems": 1,
+          "title": "Assertions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "paragraph_id",
+        "assertions"
+      ],
+      "title": "NarrativeParagraph",
+      "type": "object"
+    },
+    "NarrativeSection": {
+      "additionalProperties": false,
+      "properties": {
+        "heading": {
+          "title": "Heading",
+          "type": "string"
+        },
+        "paragraphs": {
+          "items": {
+            "$ref": "#/$defs/NarrativeParagraph"
+          },
+          "title": "Paragraphs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "heading",
+        "paragraphs"
+      ],
+      "title": "NarrativeSection",
+      "type": "object"
+    },
+    "QuestionCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Question",
+          "type": "string"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "answered",
+            "partial",
+            "unresolved"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question",
+        "required",
+        "status"
+      ],
+      "title": "QuestionCoverage",
+      "type": "object"
+    },
+    "ReportDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "default": 1,
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "title": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Title",
+          "type": "string"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/ReportSection"
+          },
+          "title": "Sections",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "unresolved_questions": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Unresolved Questions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "sections",
+        "limitations",
+        "unresolved_questions"
+      ],
+      "title": "ReportDraft",
+      "type": "object"
+    },
+    "ReportSection": {
+      "additionalProperties": false,
+      "properties": {
+        "heading": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Heading",
+          "type": "string"
+        },
+        "statements": {
+          "items": {
+            "$ref": "#/$defs/ReportStatement"
+          },
+          "title": "Statements",
+          "type": "array"
+        }
+      },
+      "required": [
+        "heading",
+        "statements"
+      ],
+      "title": "ReportSection",
+      "type": "object"
+    },
+    "ReportStatement": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "inference",
+            "recommendation",
+            "limitation"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "statement_id",
+        "text",
+        "kind",
+        "claim_ids",
+        "evidence_ids"
+      ],
+      "title": "ReportStatement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "report_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "version": {
+      "const": 1,
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "partial"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "markdown": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Markdown",
+      "type": "string"
+    },
+    "structured": {
+      "discriminator": {
+        "mapping": {
+          "1": "#/$defs/ReportDraft",
+          "2": "#/$defs/NarrativeDraft",
+          "3": "#/$defs/NarrativeDraft"
+        },
+        "propertyName": "schema_version"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ReportDraft"
+        },
+        {
+          "$ref": "#/$defs/NarrativeDraft"
+        }
+      ],
+      "title": "Structured"
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "execution": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExecutionSummary"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "report_id",
+    "run_id",
+    "status",
+    "markdown",
+    "structured",
+    "citations",
+    "created_at"
+  ],
+  "title": "Report",
+  "type": "object"
+}

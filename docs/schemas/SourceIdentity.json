@@ -1,0 +1,68 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "basis": {
+      "enum": [
+        "original_publication",
+        "official_documentation",
+        "firsthand_record",
+        "observed_official_link"
+      ],
+      "title": "Basis",
+      "type": "string"
+    },
+    "publisher_name": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Publisher Name",
+      "type": "string"
+    },
+    "context_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Context Id"
+    },
+    "quote": {
+      "maxLength": 500,
+      "title": "Quote",
+      "type": "string"
+    },
+    "link_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Link Id"
+    },
+    "explanation": {
+      "maxLength": 300,
+      "title": "Explanation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "basis",
+    "publisher_name",
+    "context_id",
+    "quote",
+    "link_id",
+    "explanation"
+  ],
+  "title": "SourceIdentity",
+  "type": "object"
+}

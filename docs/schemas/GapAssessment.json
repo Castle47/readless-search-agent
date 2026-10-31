@@ -1,0 +1,116 @@
+{
+  "$defs": {
+    "Gap": {
+      "additionalProperties": false,
+      "properties": {
+        "gap_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Gap Id",
+          "type": "string"
+        },
+        "facet_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Facet Id",
+          "type": "string"
+        },
+        "criterion_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Criterion Id"
+        },
+        "type": {
+          "enum": [
+            "missing",
+            "conflict",
+            "stale",
+            "weak_source"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "priority": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Priority",
+          "type": "integer"
+        },
+        "question": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Question",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "gap_id",
+        "facet_id",
+        "criterion_id",
+        "type",
+        "priority",
+        "question",
+        "evidence_ids"
+      ],
+      "title": "Gap",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "gaps": {
+      "items": {
+        "$ref": "#/$defs/Gap"
+      },
+      "title": "Gaps",
+      "type": "array"
+    },
+    "required_coverage": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Required Coverage",
+      "type": "number"
+    },
+    "can_answer": {
+      "title": "Can Answer",
+      "type": "boolean"
+    },
+    "explanation": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Explanation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "gaps",
+    "required_coverage",
+    "can_answer",
+    "explanation"
+  ],
+  "title": "GapAssessment",
+  "type": "object"
+}

@@ -1,0 +1,1 @@
+Official specification. The verified fixture value is 42. 中文🐿️é This statement refers to the first release, under the documented test conditions.

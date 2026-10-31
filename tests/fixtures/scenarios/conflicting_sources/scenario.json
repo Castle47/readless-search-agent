@@ -1,0 +1,26 @@
+{
+  "expected": "partial",
+  "conflict": true,
+  "pages": [
+    {
+      "url": "https://official.example.org/spec",
+      "quote": "The verified fixture value is 42. 中文🐿️é",
+      "claim": "The verified fixture value is 42.",
+      "published_at": "2025-01-01T00:00:00+00:00",
+      "text": "Official specification. The verified fixture value is 42. 中文🐿️é This statement refers to the first release, under the documented test conditions."
+    },
+    {
+      "url": "https://independent.example.net/review",
+      "quote": "the value is 99.",
+      "claim": "The verified fixture value is 99.",
+      "published_at": "2025-01-01T00:00:00+00:00",
+      "text": "Independent measurement states the value is 99. This directly conflicts with the official release for the identical time period."
+    }
+  ],
+  "expected_criteria": 1,
+  "allowed_source_urls": [
+    "https://official.example.org/spec",
+    "https://independent.example.net/review"
+  ],
+  "required_limitations": []
+}

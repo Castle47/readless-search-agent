@@ -1,0 +1,3 @@
+# User-approved per-call input ceilings. Other settings come from the deployed image.
+understand: 6000
+planner: 8000

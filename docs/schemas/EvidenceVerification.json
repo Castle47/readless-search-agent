@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "EvidenceVerdict": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_index": {
+          "minimum": 0,
+          "title": "Candidate Index",
+          "type": "integer"
+        },
+        "relation": {
+          "enum": [
+            "supports",
+            "contradicts",
+            "insufficient"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "direct": {
+          "title": "Direct",
+          "type": "boolean"
+        },
+        "primary_for_claim": {
+          "title": "Primary For Claim",
+          "type": "boolean"
+        },
+        "criterion_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Criterion Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "maxLength": 400,
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_index",
+        "relation",
+        "direct",
+        "primary_for_claim",
+        "criterion_ids",
+        "explanation"
+      ],
+      "title": "EvidenceVerdict",
+      "type": "object"
+    },
+    "SourceIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "enum": [
+            "original_publication",
+            "official_documentation",
+            "firsthand_record",
+            "observed_official_link"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "publisher_name": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Publisher Name",
+          "type": "string"
+        },
+        "context_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Context Id"
+        },
+        "quote": {
+          "maxLength": 500,
+          "title": "Quote",
+          "type": "string"
+        },
+        "link_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Link Id"
+        },
+        "explanation": {
+          "maxLength": 300,
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "basis",
+        "publisher_name",
+        "context_id",
+        "quote",
+        "link_id",
+        "explanation"
+      ],
+      "title": "SourceIdentity",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "verdicts": {
+      "items": {
+        "$ref": "#/$defs/EvidenceVerdict"
+      },
+      "maxItems": 5,
+      "title": "Verdicts",
+      "type": "array"
+    },
+    "source_identity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SourceIdentity"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "verdicts"
+  ],
+  "title": "EvidenceVerification",
+  "type": "object"
+}

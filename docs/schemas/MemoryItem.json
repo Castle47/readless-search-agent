@@ -1,0 +1,118 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "memory_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Memory Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "lesson",
+        "source_pattern",
+        "open_question",
+        "conclusion",
+        "failed_strategy"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 1200,
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "topic_tags": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Topic Tags",
+      "type": "array"
+    },
+    "source_run_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Source Run Id",
+      "type": "string"
+    },
+    "claim_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Claim Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Expires At"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "superseded"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "supersedes": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Supersedes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "memory_id",
+    "kind",
+    "text",
+    "topic_tags",
+    "source_run_id",
+    "claim_ids",
+    "evidence_ids",
+    "created_at",
+    "expires_at",
+    "status",
+    "supersedes"
+  ],
+  "title": "MemoryItem",
+  "type": "object"
+}

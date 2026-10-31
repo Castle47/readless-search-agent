@@ -1,0 +1,84 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "claim_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "temporal_scope": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Temporal Scope"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "contested",
+        "unverified",
+        "superseded"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "criterion_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Criterion Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "claim_id",
+    "text",
+    "temporal_scope",
+    "status",
+    "confidence",
+    "evidence_ids",
+    "criterion_ids"
+  ],
+  "title": "Claim",
+  "type": "object"
+}

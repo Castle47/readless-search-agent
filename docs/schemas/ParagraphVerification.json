@@ -1,0 +1,93 @@
+{
+  "$defs": {
+    "StatementVerdict": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "verdict": {
+          "enum": [
+            "entailment",
+            "contradiction",
+            "insufficient"
+          ],
+          "title": "Verdict",
+          "type": "string"
+        },
+        "atomic": {
+          "title": "Atomic",
+          "type": "boolean"
+        },
+        "answered_criterion_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Answered Criterion Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "maxLength": 400,
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "verdict",
+        "atomic",
+        "answered_criterion_ids",
+        "explanation"
+      ],
+      "title": "StatementVerdict",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "paragraph_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Paragraph Id",
+      "type": "string"
+    },
+    "verdicts": {
+      "items": {
+        "$ref": "#/$defs/StatementVerdict"
+      },
+      "title": "Verdicts",
+      "type": "array"
+    },
+    "complete": {
+      "title": "Complete",
+      "type": "boolean"
+    },
+    "unsupported_text": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Unsupported Text",
+      "type": "array"
+    },
+    "explanation": {
+      "title": "Explanation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "paragraph_id",
+    "verdicts",
+    "complete",
+    "unsupported_text",
+    "explanation"
+  ],
+  "title": "ParagraphVerification",
+  "type": "object"
+}

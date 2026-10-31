@@ -1,0 +1,74 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "anchor": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Anchor",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "fact",
+        "inference",
+        "recommendation",
+        "example"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "claim_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Claim Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "verdict": {
+      "enum": [
+        "entailment",
+        "contradiction",
+        "insufficient"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "answered_criterion_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Answered Criterion Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "text",
+    "anchor",
+    "kind",
+    "claim_ids",
+    "evidence_ids",
+    "verdict",
+    "answered_criterion_ids"
+  ],
+  "title": "AuditedAtom",
+  "type": "object"
+}

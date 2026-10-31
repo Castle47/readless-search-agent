@@ -1,0 +1,7 @@
+{
+  "source": "Explicit preferences supplied by the repository owner",
+  "preferences": [
+    "Prefer concise technical explanations with traceable sources.",
+    "Prioritize primary documentation for implementation claims."
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "ComposedParagraph": {
+      "additionalProperties": false,
+      "properties": {
+        "block_type": {
+          "default": "paragraph",
+          "enum": [
+            "paragraph",
+            "list",
+            "table",
+            "code"
+          ],
+          "title": "Block Type",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Language"
+        },
+        "illustrative": {
+          "default": false,
+          "title": "Illustrative",
+          "type": "boolean"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "claim_ids",
+        "evidence_ids"
+      ],
+      "title": "ComposedParagraph",
+      "type": "object"
+    },
+    "ComposedSection": {
+      "additionalProperties": false,
+      "properties": {
+        "heading": {
+          "title": "Heading",
+          "type": "string"
+        },
+        "paragraphs": {
+          "items": {
+            "$ref": "#/$defs/ComposedParagraph"
+          },
+          "minItems": 1,
+          "title": "Paragraphs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "heading",
+        "paragraphs"
+      ],
+      "title": "ComposedSection",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Private writer output; precise assertions are produced by the auditor.",
+  "properties": {
+    "title": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Title",
+      "type": "string"
+    },
+    "sections": {
+      "items": {
+        "$ref": "#/$defs/ComposedSection"
+      },
+      "minItems": 1,
+      "title": "Sections",
+      "type": "array"
+    }
+  },
+  "required": [
+    "title",
+    "sections"
+  ],
+  "title": "ProseComposition",
+  "type": "object"
+}

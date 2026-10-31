@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "paragraph_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Paragraph Id",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "claim_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Claim Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "paragraph_id",
+    "text",
+    "claim_ids",
+    "evidence_ids"
+  ],
+  "title": "RevisedProse",
+  "type": "object"
+}

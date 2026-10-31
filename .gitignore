@@ -1,0 +1,15 @@
+.venv/
+.env
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+__pycache__/
+*.pyc
+.DS_Store
+.secrets/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+configs/user-preferences.json
+example-vault/*
+!example-vault/README.md

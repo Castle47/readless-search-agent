@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "block_type": {
+      "default": "paragraph",
+      "enum": [
+        "paragraph",
+        "list",
+        "table",
+        "code"
+      ],
+      "title": "Block Type",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "language": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Language"
+    },
+    "illustrative": {
+      "default": false,
+      "title": "Illustrative",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "text"
+  ],
+  "title": "BlockContent",
+  "type": "object"
+}

@@ -1,0 +1,96 @@
+name: readless-search-agent
+
+services:
+  api:
+    build: .
+    image: readless-search-agent:0.1.0
+    environment: &agent-env
+      RA_DATABASE_URL: postgresql://research:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/research
+      RA_API_BEARER_TOKEN: ${API_BEARER_TOKEN:?Set API_BEARER_TOKEN in .env}
+      RA_OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:?Set OPENROUTER_API_KEY in .env}
+      RA_SEARXNG_URL: http://searxng:8080
+      RA_LETTA_URL: http://letta:8283
+      RA_VAULT_PATH: /knowledge/obsidian
+      RA_RAG_INDEX: /run/search-agent-index/vault.sqlite
+      RA_EMBEDDING_URL: http://embeddings:11434
+      RA_BIND_HOST: 0.0.0.0
+      RA_WEB_DNS_ENDPOINT: https://cloudflare-dns.com/dns-query
+    volumes: &agent-volumes
+      - type: bind
+        source: ${VAULT_PATH:-./example-vault}
+        target: /knowledge/obsidian
+        read_only: true
+      - knowledge-index:/run/search-agent-index
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    command: ["sh", "-c", "research-agent bootstrap && exec research-agent api"]
+    restart: unless-stopped
+
+  worker:
+    image: readless-search-agent:0.1.0
+    environment: *agent-env
+    volumes: *agent-volumes
+    command: ["research-agent", "worker"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  memory-worker:
+    image: readless-search-agent:0.1.0
+    environment: *agent-env
+    volumes: *agent-volumes
+    command: ["research-agent", "memory-worker"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  vault-indexer:
+    image: readless-search-agent:0.1.0
+    profiles: ["indexing"]
+    environment: *agent-env
+    volumes: *agent-volumes
+    command: ["research-agent", "index-vault"]
+    depends_on: [embeddings]
+    restart: "no"
+
+  postgres:
+    image: postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+    environment:
+      POSTGRES_USER: research
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: research
+    ports: ["127.0.0.1:55432:5432"]
+    volumes: ["research-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U research -d research"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  searxng:
+    image: searxng/searxng@sha256:4109ebf36dc291931c5b43f5ee451c517085255aecfa71f8ffae21000ce5c5fa
+    ports: ["127.0.0.1:8088:8080"]
+    volumes: ["./deploy/searxng.yaml:/etc/searxng/settings.yml:ro"]
+    environment:
+      SEARXNG_SETTINGS_PATH: /etc/searxng/settings.yml
+    restart: unless-stopped
+
+  letta:
+    image: letta/letta:0.16.8@sha256:aa66c3eeee13d2dfc40c650d709b550237ee31bfc91942a52fa488a13fa8c102
+    ports: ["127.0.0.1:8283:8283"]
+    volumes: ["letta-data:/var/lib/postgresql/data"]
+    environment:
+      OLLAMA_BASE_URL: http://embeddings:11434
+      ANONYMIZED_TELEMETRY: "false"
+    restart: unless-stopped
+
+  embeddings:
+    image: ollama/ollama@sha256:da6e0dc5651df159e45686fd663c4dbe1624a52c44d7280eeac1551d8f865532
+    volumes: ["embedding-data:/root/.ollama"]
+    restart: unless-stopped
+
+volumes:
+  research-data:
+  letta-data:
+  embedding-data:
+  knowledge-index:

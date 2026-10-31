@@ -1,0 +1,141 @@
+{
+  "$defs": {
+    "NarrativeAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "inference",
+            "recommendation",
+            "example"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "anchor": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Anchor",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "text",
+        "kind",
+        "claim_ids",
+        "evidence_ids",
+        "anchor"
+      ],
+      "title": "NarrativeAssertion",
+      "type": "object"
+    },
+    "NarrativeParagraph": {
+      "additionalProperties": false,
+      "properties": {
+        "paragraph_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Paragraph Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "assertions": {
+          "items": {
+            "$ref": "#/$defs/NarrativeAssertion"
+          },
+          "minItems": 1,
+          "title": "Assertions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "paragraph_id",
+        "text",
+        "assertions"
+      ],
+      "title": "NarrativeParagraph",
+      "type": "object"
+    },
+    "NarrativeSection": {
+      "additionalProperties": false,
+      "properties": {
+        "heading": {
+          "title": "Heading",
+          "type": "string"
+        },
+        "paragraphs": {
+          "items": {
+            "$ref": "#/$defs/NarrativeParagraph"
+          },
+          "title": "Paragraphs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "heading",
+        "paragraphs"
+      ],
+      "title": "NarrativeSection",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Title",
+      "type": "string"
+    },
+    "sections": {
+      "items": {
+        "$ref": "#/$defs/NarrativeSection"
+      },
+      "title": "Sections",
+      "type": "array"
+    }
+  },
+  "required": [
+    "title",
+    "sections"
+  ],
+  "title": "NarrativeComposition",
+  "type": "object"
+}

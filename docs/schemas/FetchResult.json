@@ -1,0 +1,102 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "requested_url": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Requested Url",
+      "type": "string"
+    },
+    "canonical_url": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Canonical Url",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Title",
+      "type": "string"
+    },
+    "media_type": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Media Type",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "content_sha256": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Content Sha256",
+      "type": "string"
+    },
+    "retrieved_at": {
+      "format": "date-time",
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Published At"
+    },
+    "publisher_key": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Publisher Key",
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "official",
+        "paper",
+        "repository",
+        "independent",
+        "discussion",
+        "unknown"
+      ],
+      "title": "Source Type",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "requested_url",
+    "canonical_url",
+    "title",
+    "media_type",
+    "text",
+    "content_sha256",
+    "retrieved_at",
+    "published_at",
+    "publisher_key",
+    "source_type",
+    "metadata"
+  ],
+  "title": "FetchResult",
+  "type": "object"
+}

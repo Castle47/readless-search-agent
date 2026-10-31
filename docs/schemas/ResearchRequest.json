@@ -1,0 +1,193 @@
+{
+  "$defs": {
+    "RequestLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "search_calls": {
+          "anyOf": [
+            {
+              "maximum": 16,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Search Calls"
+        },
+        "fetched_pages": {
+          "anyOf": [
+            {
+              "maximum": 30,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fetched Pages"
+        },
+        "total_tokens": {
+          "anyOf": [
+            {
+              "maximum": 400000,
+              "minimum": 12000,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total Tokens"
+        },
+        "wall_seconds": {
+          "anyOf": [
+            {
+              "maximum": 1200,
+              "minimum": 30,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wall Seconds"
+        }
+      },
+      "title": "RequestLimits",
+      "type": "object"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End"
+        }
+      },
+      "title": "TimeRange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "query": {
+      "maxLength": 8000,
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Query",
+      "type": "string"
+    },
+    "context": {
+      "default": "",
+      "maxLength": 12000,
+      "title": "Context",
+      "type": "string"
+    },
+    "output_language": {
+      "default": "zh-CN",
+      "enum": [
+        "zh-CN",
+        "en"
+      ],
+      "title": "Output Language",
+      "type": "string"
+    },
+    "as_of": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "As Of"
+    },
+    "time_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TimeRange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "allowed_domains": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Allowed Domains",
+      "type": "array"
+    },
+    "blocked_domains": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Blocked Domains",
+      "type": "array"
+    },
+    "memory_mode": {
+      "default": "read_write",
+      "enum": [
+        "read_write",
+        "read_only",
+        "off"
+      ],
+      "title": "Memory Mode",
+      "type": "string"
+    },
+    "limits": {
+      "$ref": "#/$defs/RequestLimits"
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "title": "ResearchRequest",
+  "type": "object"
+}

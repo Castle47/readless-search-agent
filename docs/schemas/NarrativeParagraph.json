@@ -1,0 +1,123 @@
+{
+  "$defs": {
+    "NarrativeAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "inference",
+            "recommendation",
+            "example"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "anchor": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Anchor",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "text",
+        "kind",
+        "claim_ids",
+        "evidence_ids",
+        "anchor"
+      ],
+      "title": "NarrativeAssertion",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "block_type": {
+      "default": "paragraph",
+      "enum": [
+        "paragraph",
+        "list",
+        "table",
+        "code"
+      ],
+      "title": "Block Type",
+      "type": "string"
+    },
+    "text": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Text",
+      "type": "string"
+    },
+    "language": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Language"
+    },
+    "illustrative": {
+      "default": false,
+      "title": "Illustrative",
+      "type": "boolean"
+    },
+    "paragraph_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Paragraph Id",
+      "type": "string"
+    },
+    "assertions": {
+      "items": {
+        "$ref": "#/$defs/NarrativeAssertion"
+      },
+      "minItems": 1,
+      "title": "Assertions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "text",
+    "paragraph_id",
+    "assertions"
+  ],
+  "title": "NarrativeParagraph",
+  "type": "object"
+}
