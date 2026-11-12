@@ -64,16 +64,41 @@
     "NarrativeParagraph": {
       "additionalProperties": false,
       "properties": {
-        "paragraph_id": {
-          "minLength": 1,
-          "pattern": "\\S",
-          "title": "Paragraph Id",
+        "block_type": {
+          "enum": [
+            "paragraph",
+            "list",
+            "table",
+            "code"
+          ],
+          "title": "Block Type",
           "type": "string"
         },
         "text": {
           "minLength": 1,
           "pattern": "\\S",
           "title": "Text",
+          "type": "string"
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Language"
+        },
+        "illustrative": {
+          "title": "Illustrative",
+          "type": "boolean"
+        },
+        "paragraph_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Paragraph Id",
           "type": "string"
         },
         "assertions": {
@@ -86,8 +111,11 @@
         }
       },
       "required": [
-        "paragraph_id",
+        "block_type",
         "text",
+        "language",
+        "illustrative",
+        "paragraph_id",
         "assertions"
       ],
       "title": "NarrativeParagraph",

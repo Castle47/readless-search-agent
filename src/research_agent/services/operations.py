@@ -464,6 +464,11 @@ class Operations:
                         requested["tokens_" + model_role] = tokens
                     if model_role in {"repair", "editor"} or is_recheck:
                         requested["tokens_repair_and_recheck"] = tokens
+                    if model_role in {"peer_questioner", "peer_responder"}:
+                        if not self.config.get("peer_review_workflow_version"):
+                            raise ToolFailure("peer_review_disabled")
+                        requested["tokens_peer_review"] = tokens
+                        requested["peer_review_http_attempts"] = 1
                 attempt = await self.reserve(key, kind, hashed, requested, task_id, partition)
                 if "cached" in attempt:
                     return attempt["cached"]

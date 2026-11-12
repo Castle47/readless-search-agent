@@ -3,7 +3,6 @@
   "properties": {
     "schema_version": {
       "const": 1,
-      "default": 1,
       "title": "Schema Version",
       "type": "integer"
     },
@@ -79,12 +78,14 @@
       "type": "string"
     },
     "metadata": {
-      "additionalProperties": true,
+      "additionalProperties": false,
       "title": "Metadata",
-      "type": "object"
+      "type": "object",
+      "required": []
     }
   },
   "required": [
+    "schema_version",
     "requested_url",
     "canonical_url",
     "title",

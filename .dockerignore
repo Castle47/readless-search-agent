@@ -8,3 +8,6 @@ docs
 .env
 .secrets
 example-vault
+
+integrations
+.readless

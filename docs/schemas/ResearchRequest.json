@@ -14,7 +14,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Search Calls"
         },
         "fetched_pages": {
@@ -28,7 +27,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Fetched Pages"
         },
         "total_tokens": {
@@ -42,7 +40,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Total Tokens"
         },
         "wall_seconds": {
@@ -56,12 +53,17 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Wall Seconds"
         }
       },
       "title": "RequestLimits",
-      "type": "object"
+      "type": "object",
+      "required": [
+        "search_calls",
+        "fetched_pages",
+        "total_tokens",
+        "wall_seconds"
+      ]
     },
     "TimeRange": {
       "additionalProperties": false,
@@ -76,7 +78,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Start"
         },
         "end": {
@@ -89,19 +90,21 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "End"
         }
       },
       "title": "TimeRange",
-      "type": "object"
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ]
     }
   },
   "additionalProperties": false,
   "properties": {
     "schema_version": {
       "const": 1,
-      "default": 1,
       "title": "Schema Version",
       "type": "integer"
     },
@@ -113,13 +116,11 @@
       "type": "string"
     },
     "context": {
-      "default": "",
       "maxLength": 12000,
       "title": "Context",
       "type": "string"
     },
     "output_language": {
-      "default": "zh-CN",
       "enum": [
         "zh-CN",
         "en"
@@ -137,7 +138,6 @@
           "type": "null"
         }
       ],
-      "default": null,
       "title": "As Of"
     },
     "time_range": {
@@ -148,8 +148,7 @@
         {
           "type": "null"
         }
-      ],
-      "default": null
+      ]
     },
     "allowed_domains": {
       "items": {
@@ -172,7 +171,6 @@
       "type": "array"
     },
     "memory_mode": {
-      "default": "read_write",
       "enum": [
         "read_write",
         "read_only",
@@ -186,7 +184,16 @@
     }
   },
   "required": [
-    "query"
+    "schema_version",
+    "query",
+    "context",
+    "output_language",
+    "as_of",
+    "time_range",
+    "allowed_domains",
+    "blocked_domains",
+    "memory_mode",
+    "limits"
   ],
   "title": "ResearchRequest",
   "type": "object"

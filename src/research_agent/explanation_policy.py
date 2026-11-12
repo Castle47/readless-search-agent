@@ -51,7 +51,7 @@ unexplained jargon in the body.
 
 6. Anticipate productive follow-up questions: why this design rather than a
 nearby alternative, what would fail if an essential component were removed,
-which similar concepts are easy to confuse, and what the reader can now infer
+which closely related mechanisms need distinction to explain the requested behavior, and what the reader can now infer
 or do. Add the most useful answers next to the relevant explanation, without
 claiming the user explicitly asked them. Cover reasonable practical meaning
 and representative uses. Keep optional history, exhaustive comparisons and

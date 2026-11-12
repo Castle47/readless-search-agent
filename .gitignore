@@ -13,3 +13,9 @@ __pycache__/
 configs/user-preferences.json
 example-vault/*
 !example-vault/README.md
+
+# RAG migrations and index-writer locks
+*.sqlite.*
+*.writer.lock
+.readless/
+.netlify/

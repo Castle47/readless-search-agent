@@ -5,7 +5,9 @@ import os
 import time
 from pathlib import Path
 from uuid import uuid4
+
 import httpx
+
 from .config import Settings
 
 
@@ -24,30 +26,57 @@ def main():
     sub.add_parser("worker")
     sub.add_parser("memory-worker")
     sub.add_parser("api")
-    sub.add_parser("index-vault")
+    vault = sub.add_parser("index-vault")
+    vault.add_argument("--match", help="Index matching file names without removing other indexed notes")
+    sub.add_parser("index-blogs")
+    sub.add_parser("index-site")
+    sub.add_parser("index-folder").add_argument("folder_id")
     memory_import = sub.add_parser("import-preferences")
     memory_import.add_argument("path", type=Path)
     args = parser.parse_args()
     settings = Settings().refresh_secrets()
+    if args.command == "index-folder":
+        from .services.folder_rag import index_folder
+
+        print(json.dumps(asyncio.run(index_folder(settings, args.folder_id)), ensure_ascii=False))
+        return
+    if args.command == "index-site":
+        from .services.site_rag import index_site
+
+        print(json.dumps(asyncio.run(index_site(settings)), ensure_ascii=False))
+        return
+    if args.command == "index-blogs":
+        from .services.readless_rag import index_blogs
+
+        print(json.dumps(asyncio.run(index_blogs(settings)), ensure_ascii=False))
+        return
     if args.command == "index-vault":
         from .services.private_rag import index_vault
-        print(json.dumps(asyncio.run(index_vault(settings)), ensure_ascii=False))
+
+        paths = (
+            [p for p in settings.vault_path.rglob("*") if args.match.lower() in p.name.lower()]
+            if args.match
+            else None
+        )
+        print(json.dumps(asyncio.run(index_vault(settings, paths)), ensure_ascii=False))
         return
     if args.command == "import-preferences":
         from .services.user_preferences import import_preferences
+
         print(json.dumps(asyncio.run(import_preferences(settings, args.path)), ensure_ascii=False))
         return
     if args.command == "bootstrap":
-        from alembic.config import Config
         from alembic import command
+        from alembic.config import Config
+
         from .storage.checkpoint import bootstrap
 
         command.upgrade(Config(str(Path(__file__).resolve().parents[2] / "alembic.ini")), "head")
         asyncio.run(bootstrap(settings))
         return
     if args.command == "provision-memory":
-        from .storage.db import Database
         from .adapters.letta import Memory
+        from .storage.db import Database
 
         async def provision():
             db = Database(settings.database_url.get_secret_value())

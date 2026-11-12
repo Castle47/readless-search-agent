@@ -65,7 +65,6 @@
   "additionalProperties": false,
   "properties": {
     "block_type": {
-      "default": "paragraph",
       "enum": [
         "paragraph",
         "list",
@@ -90,11 +89,9 @@
           "type": "null"
         }
       ],
-      "default": null,
       "title": "Language"
     },
     "illustrative": {
-      "default": false,
       "title": "Illustrative",
       "type": "boolean"
     },
@@ -114,7 +111,10 @@
     }
   },
   "required": [
+    "block_type",
     "text",
+    "language",
+    "illustrative",
     "paragraph_id",
     "assertions"
   ],

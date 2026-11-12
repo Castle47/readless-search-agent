@@ -53,6 +53,35 @@ def material_progress(notes, sources):
 
 
 class SourceResearcher(Researcher):
+    def restore_peer_context(self, state):
+        if not self.s.config.get("peer_review_workflow_version"):
+            return
+        task = self.task(state)
+        if not hasattr(self.s, "peer_task_questions"):
+            self.s.peer_task_questions = {}
+        self.s.peer_task_questions[task.task_id] = state.get("peer_questions", [])
+
+    async def read_existing(self, state):
+        self.restore_peer_context(state)
+        return await super().read_existing(state)
+
+    async def fetch_extract(self, state):
+        self.restore_peer_context(state)
+        return await super().fetch_extract(state)
+
+    async def guard(self, state):
+        self.restore_peer_context(state)
+        result = await super().guard(state)
+        if (
+            self.s.config.get("peer_review_workflow_version")
+            and state.get("peer_questions")
+            and not result["round"]
+            and result["stop_reason"] == "sufficient"
+        ):
+            # The earlier global readiness predates this challenge. Perform a focused reread first.
+            result["stop_reason"] = None
+        return result
+
     async def reason(self, state):
         task = self.task(state)
         if self.s.config.get("adaptive_research_workflow_version"):
@@ -104,7 +133,24 @@ class SourceResearcher(Researcher):
         return await SourceNotes(self.s).read(source_id, page, task)
 
     async def select_read(self, state):
+        self.restore_peer_context(state)
         task = self.task(state)
+        if (
+            self.s.config.get("peer_review_workflow_version")
+            and state.get("peer_questions")
+            and not state.get("round", 0)
+        ):
+            known = {s["id"] for s in await self.s.evidence.source_index()}
+            wanted = list(
+                dict.fromkeys(sid for q in state["peer_questions"] for sid in q["source_ids"] if sid in known)
+            )
+            if wanted:
+                return {
+                    "pending_source_ids": wanted[: self.s.config["research"]["pages_per_round"]],
+                    "pending_hits": [],
+                    "direct_read": False,
+                    "primary_domains": [],
+                }
         if self.s.config.get("adaptive_research_workflow_version"):
             assessment = await SourceNotes(self.s).readiness()
             selected = assessment["next_sources"]

@@ -2,9 +2,10 @@
 
 from typing import Literal
 
-ModelId = Literal["openai/gpt-5.6-luna", "openai/gpt-6-astra"]
-DEFAULT_MODEL = "openai/gpt-5.6-luna"
+ModelId = Literal["openai/gpt-6-luna", "openai/gpt-5.6-luna", "openai/gpt-6-astra"]
+DEFAULT_MODEL = "openai/gpt-6-luna"
 MODEL_ALIASES = {
+    "openai/gpt-6-luna": {"openai/gpt-6-luna", "gpt-6-luna"},
     "openai/gpt-5.6-luna": {
         "openai/gpt-5.6-luna",
         "openai/gpt-5.6-luna-20260709",

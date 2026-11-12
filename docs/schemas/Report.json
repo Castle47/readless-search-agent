@@ -43,7 +43,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Paragraph Id"
         },
         "start_char": {
@@ -55,7 +54,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Start Char"
         },
         "end_char": {
@@ -67,7 +65,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "End Char"
         }
       },
@@ -76,7 +73,10 @@
         "statement_id",
         "claim_id",
         "evidence_id",
-        "ordinal"
+        "ordinal",
+        "paragraph_id",
+        "start_char",
+        "end_char"
       ],
       "title": "Citation",
       "type": "object"
@@ -85,9 +85,26 @@
       "additionalProperties": false,
       "properties": {
         "model_id": {
-          "const": "openai/gpt-5.6-luna",
+          "enum": [
+            "openai/gpt-6-luna",
+            "openai/gpt-5.6-luna",
+            "openai/gpt-6-astra"
+          ],
           "title": "Model Id",
           "type": "string"
+        },
+        "reasoning_efforts": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "type": "object",
+              "required": []
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reasoning Efforts"
         },
         "search_calls": {
           "minimum": 0,
@@ -144,7 +161,6 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Cost Usd"
         },
         "known_cost_usd": {
@@ -157,18 +173,20 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Known Cost Usd"
         }
       },
       "required": [
         "model_id",
+        "reasoning_efforts",
         "search_calls",
         "fetched_pages",
         "tokens",
         "unknown_tokens",
         "stop_reason",
-        "memory_status"
+        "memory_status",
+        "cost_usd",
+        "known_cost_usd"
       ],
       "title": "ExecutionSummary",
       "type": "object"
@@ -238,7 +256,6 @@
       "additionalProperties": false,
       "properties": {
         "schema_version": {
-          "default": 2,
           "enum": [
             2,
             3
@@ -285,19 +302,12 @@
           "type": "array"
         },
         "paragraph_answers": {
-          "additionalProperties": {
-            "items": {
-              "minLength": 1,
-              "pattern": "\\S",
-              "type": "string"
-            },
-            "type": "array"
-          },
+          "additionalProperties": false,
           "title": "Paragraph Answers",
-          "type": "object"
+          "type": "object",
+          "required": []
         },
         "quality_status": {
-          "default": "pending",
           "enum": [
             "pending",
             "passed",
@@ -310,10 +320,14 @@
         }
       },
       "required": [
+        "schema_version",
         "title",
         "sections",
         "limitations",
-        "unresolved_questions"
+        "unresolved_questions",
+        "coverage",
+        "paragraph_answers",
+        "quality_status"
       ],
       "title": "NarrativeDraft",
       "type": "object"
@@ -322,7 +336,6 @@
       "additionalProperties": false,
       "properties": {
         "block_type": {
-          "default": "paragraph",
           "enum": [
             "paragraph",
             "list",
@@ -347,11 +360,9 @@
               "type": "null"
             }
           ],
-          "default": null,
           "title": "Language"
         },
         "illustrative": {
-          "default": false,
           "title": "Illustrative",
           "type": "boolean"
         },
@@ -371,7 +382,10 @@
         }
       },
       "required": [
+        "block_type",
         "text",
+        "language",
+        "illustrative",
         "paragraph_id",
         "assertions"
       ],
@@ -436,7 +450,6 @@
       "properties": {
         "schema_version": {
           "const": 1,
-          "default": 1,
           "title": "Schema Version",
           "type": "integer"
         },
@@ -473,6 +486,7 @@
         }
       },
       "required": [
+        "schema_version",
         "title",
         "sections",
         "limitations",
@@ -564,7 +578,6 @@
   "properties": {
     "schema_version": {
       "const": 1,
-      "default": 1,
       "title": "Schema Version",
       "type": "integer"
     },
@@ -582,7 +595,6 @@
     },
     "version": {
       "const": 1,
-      "default": 1,
       "title": "Version",
       "type": "integer"
     },
@@ -639,18 +651,20 @@
         {
           "type": "null"
         }
-      ],
-      "default": null
+      ]
     }
   },
   "required": [
+    "schema_version",
     "report_id",
     "run_id",
+    "version",
     "status",
     "markdown",
     "structured",
     "citations",
-    "created_at"
+    "created_at",
+    "execution"
   ],
   "title": "Report",
   "type": "object"

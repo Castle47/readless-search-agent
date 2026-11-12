@@ -3,10 +3,10 @@
 import asyncio
 
 from ..contracts import Criterion, CriterionAssessment, digest, validate_ids
+from ..errors import Stopped
 from ..source_contracts import SourceReading
 from ..storage.db import all_rows
 from ..storage.evidence import independent_origins
-from ..errors import Stopped
 from .packets import packets
 from .provenance import identity_context, resolve_identity
 
@@ -44,9 +44,9 @@ class SourceNotes:
 
     async def read(self, source_id, page, task):
         from ..graph.researcher import Researcher
-        from .table_context import table_header
-        from .reading_passages import reading_passages, coalesce_passages
         from .publication_identity import established_identity, identity_summary
+        from .reading_passages import coalesce_passages, reading_passages
+        from .table_context import table_header
 
         criteria = await self.criteria()
         brief = {
@@ -55,6 +55,9 @@ class SourceNotes:
             "criteria": [c.model_dump() for c in criteria.values()],
             "search_terms": sorted(set(self.planned_queries + self.s.understanding.get("search_terms", []))),
         }
+        peer_questions = getattr(self.s, "peer_task_questions", {}).get(task.task_id, [])
+        if peer_questions:
+            brief["peer_questions"] = peer_questions
         cache = digest([source_id, page.content_sha256, brief])
         lock = self.s.source_read_locks.setdefault(cache, asyncio.Lock())
         async with lock:
@@ -79,6 +82,7 @@ class SourceNotes:
 
             def payload(group, known, leads):
                 return {
+                    **({"pending_peer_questions": peer_questions} if peer_questions else {}),
                     "question": brief["question"],
                     "reader_goal": brief["reader_goal"],
                     "source": {"url": page.canonical_url, "title": page.title},
@@ -216,7 +220,9 @@ class SourceNotes:
                 }
                 packet_proof = packed["proof"]
 
-                def validate(value):
+                def validate(
+                    value, group=group, packet_proof=packet_proof, offered_identity=offered_identity
+                ):
                     validate_ids(value.passage_ids, [f"P{i}" for i in range(len(group))])
                     validate_ids(value.addressed_criterion_ids, qa)
                     validate_ids(value.firsthand_criterion_ids, value.addressed_criterion_ids)
@@ -269,6 +275,11 @@ class SourceNotes:
                     "source_id": source_id,
                     "source_hash": page.content_sha256,
                     "brief_hash": digest(brief),
+                    **(
+                        {"peer_question_ids": [q["question_id"] for q in peer_questions]}
+                        if peer_questions
+                        else {}
+                    ),
                     "notes": value.notes,
                     "material_role": value.material_role,
                     "open_questions": value.open_questions,
