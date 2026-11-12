@@ -33,6 +33,13 @@ async def readable_full_text(services, page, task_id=None):
     return page
 
 
+def readiness_summary(assessment, breadth_pending):
+    """Bound the diagnostic summary; the complete model judgment stays stored."""
+    prefix = "尚有有价值的未读候选或互补资料缺口。" if breadth_pending else ""
+    parts = assessment.explained_parts if assessment.ready else assessment.missing_parts
+    return (prefix + "；".join(parts) or "解释材料仍不足。")[:500]
+
+
 async def survey(services, state):
     services.understanding = state["understanding"]
     key = "discovery:reader-centred:v2"
@@ -312,13 +319,7 @@ async def _material_assessment(services, criteria):
                 status="covered" if indexed[f"Q{i}"].ready and not breadth_pending else "missing",
                 supporting_claim_ids=[],
                 contradicting_claim_ids=[],
-                explanation=("尚有有价值的未读候选或互补资料缺口。" if breadth_pending else "")
-                + "；".join(
-                    indexed[f"Q{i}"].explained_parts
-                    if indexed[f"Q{i}"].ready
-                    else indexed[f"Q{i}"].missing_parts
-                )
-                or "解释材料仍不足。",
+                explanation=readiness_summary(indexed[f"Q{i}"], breadth_pending),
             )
             for i, c in enumerate(criteria)
         ]

@@ -2,7 +2,6 @@
   "additionalProperties": false,
   "properties": {
     "block_type": {
-      "default": "paragraph",
       "enum": [
         "paragraph",
         "list",
@@ -27,17 +26,18 @@
           "type": "null"
         }
       ],
-      "default": null,
       "title": "Language"
     },
     "illustrative": {
-      "default": false,
       "title": "Illustrative",
       "type": "boolean"
     }
   },
   "required": [
-    "text"
+    "block_type",
+    "text",
+    "language",
+    "illustrative"
   ],
   "title": "BlockContent",
   "type": "object"

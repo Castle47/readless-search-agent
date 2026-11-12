@@ -3,11 +3,11 @@
 import asyncio
 from typing import Literal
 
-from ..contracts import Contract, digest, stable_id, validate_ids
 from ..adapters.fetch import canonical_url, domain_allowed
+from ..contracts import Contract, digest, stable_id, validate_ids
 from ..errors import Stopped, ToolFailure
 from ..storage.db import all_rows
-from .documents import work_identity, unreadable_url, redundant_view, same_work
+from .documents import redundant_view, same_work, unreadable_url, work_identity
 
 
 class CandidateDecision(Contract):
@@ -145,6 +145,7 @@ async def _select_sources(services, candidates, question, criteria, query, key, 
             "question": question,
             "search_query": query,
             "reader_goal": services.understanding.get("reader_goal"),
+            "local_topic_context": services.understanding.get("local_topic_context", []),
             "criteria": list(criteria),
             "max_pages": cap,
             "candidates": [

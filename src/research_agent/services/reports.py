@@ -1,11 +1,12 @@
 from urllib.parse import quote
+
 from ..contracts import (
+    Citation,
+    NarrativeDraft,
+    Report,
     ReportDraft,
     ReportSection,
     ReportStatement,
-    NarrativeDraft,
-    Report,
-    Citation,
     stable_id,
     utcnow,
 )
@@ -14,6 +15,15 @@ from ..errors import InvariantViolation
 
 def source_link(source):
     metadata = source.get("metadata") or {}
+    if metadata.get("readless"):
+        blog = metadata["readless"]
+        if blog.get("origin", {}).get("kind") == "readless-cloud":
+            if not blog.get("published"):
+                return (
+                    "https://readless.cn/__readless/author/" + quote(blog["article_id"], safe="") + "/preview"
+                )
+            return "https://readless.cn/" + quote(blog["href"], safe="")
+        return "http://127.0.0.1:4180/" + quote(blog["href"], safe="")
     if metadata.get("private") and metadata.get("path"):
         return "obsidian://open?vault=Obsidian%20Vault&file=" + quote(metadata["path"], safe="")
     return source["canonical_url"]
@@ -290,7 +300,7 @@ def example_label_required(paragraph):
     explicit_mixed = (
         paragraph.block_type == "paragraph"
         and {"fact", "example"} <= kinds
-        and re.search(r"例如|比如|举例|假设|假如|for example|suppose|imagine", paragraph.text, re.I)
+        and re.search(r"例如|比如|举例|假设|假如|for example|suppose|imagine", paragraph.text, re.IGNORECASE)
     )
     return paragraph.illustrative and not explicit_mixed
 

@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "PeerQuestion": {
+      "additionalProperties": false,
+      "properties": {
+        "target_task_id": {
+          "title": "Target Task Id",
+          "type": "string"
+        },
+        "criterion_id": {
+          "title": "Criterion Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "clarification",
+            "conflict",
+            "missing_evidence"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "question": {
+          "maxLength": 700,
+          "minLength": 1,
+          "title": "Question",
+          "type": "string"
+        },
+        "passage_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 6,
+          "title": "Passage Ids",
+          "type": "array"
+        },
+        "followup_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Followup To"
+        }
+      },
+      "required": [
+        "target_task_id",
+        "criterion_id",
+        "kind",
+        "question",
+        "passage_ids",
+        "followup_to"
+      ],
+      "title": "PeerQuestion",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "questions": {
+      "items": {
+        "$ref": "#/$defs/PeerQuestion"
+      },
+      "maxItems": 1,
+      "title": "Questions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "questions"
+  ],
+  "title": "PeerQuestions",
+  "type": "object"
+}

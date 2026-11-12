@@ -3,6 +3,10 @@
     "Criterion": {
       "additionalProperties": false,
       "properties": {
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
         "criterion_id": {
           "minLength": 1,
           "pattern": "\\S",
@@ -34,9 +38,11 @@
         }
       },
       "required": [
+        "required",
         "criterion_id",
         "description",
-        "kind"
+        "kind",
+        "facet_ids"
       ],
       "title": "Criterion",
       "type": "object"
@@ -134,6 +140,15 @@
           "title": "Source Targets",
           "type": "array"
         },
+        "source_urls": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Source Urls",
+          "type": "array"
+        },
         "success_criteria": {
           "items": {
             "$ref": "#/$defs/Criterion"
@@ -173,6 +188,7 @@
         "exclusions",
         "seed_queries",
         "source_targets",
+        "source_urls",
         "success_criteria",
         "parent_gap_ids",
         "task_id",
@@ -186,7 +202,6 @@
   "properties": {
     "schema_version": {
       "const": 1,
-      "default": 1,
       "title": "Schema Version",
       "type": "integer"
     },
@@ -237,6 +252,7 @@
     }
   },
   "required": [
+    "schema_version",
     "plan_id",
     "run_id",
     "batch_no",

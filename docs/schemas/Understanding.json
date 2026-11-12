@@ -33,7 +33,6 @@
   "properties": {
     "schema_version": {
       "const": 1,
-      "default": 1,
       "title": "Schema Version",
       "type": "integer"
     },
@@ -100,12 +99,10 @@
       "type": "array"
     },
     "reader_goal": {
-      "default": "",
       "title": "Reader Goal",
       "type": "string"
     },
     "needs_discovery": {
-      "default": false,
       "title": "Needs Discovery",
       "type": "boolean"
     },
@@ -120,13 +117,17 @@
     }
   },
   "required": [
+    "schema_version",
     "standalone_query",
     "intent",
     "assumptions",
     "facets",
     "source_policy",
     "freshness",
-    "search_languages"
+    "search_languages",
+    "reader_goal",
+    "needs_discovery",
+    "search_terms"
   ],
   "title": "Understanding",
   "type": "object"

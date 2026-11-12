@@ -1,6 +1,6 @@
+import hashlib
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
-import hashlib
 
 from research_agent.contracts import FetchResult, SearchHit, utcnow
 from research_agent.errors import ToolFailure
@@ -76,3 +76,21 @@ async def test_blocked_teaching_source_is_replaced_before_planning(monkeypatch):
     assert s.search.search.await_count == 2
     assert (await survey(s, state)) == result
     assert s.search.search.await_count == 2
+
+
+def test_long_readiness_explanations_fit_the_assessment_contract():
+    from types import SimpleNamespace
+
+    from research_agent.contracts import CriterionAssessment
+    from research_agent.services.adaptive_research import readiness_summary
+
+    decision = SimpleNamespace(ready=True, explained_parts=["具体机制的完整说明" * 100], missing_parts=[])
+    assessment = CriterionAssessment(
+        criterion_id="Q1",
+        status="covered",
+        supporting_claim_ids=[],
+        contradicting_claim_ids=[],
+        explanation=readiness_summary(decision, False),
+    )
+    assert len(assessment.explanation) == 500
+    assert decision.explained_parts == ["具体机制的完整说明" * 100]

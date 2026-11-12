@@ -1,9 +1,9 @@
 """Whole-answer synthesis with focused repair, never automatic paragraph deletion."""
 
-from copy import deepcopy
 import re
+from copy import deepcopy
 
-from ..adaptive_contracts import WholeAnswerReview, AnswerIssue
+from ..adaptive_contracts import AnswerIssue, WholeAnswerReview
 from ..contracts import (
     EvidenceCandidate,
     EvidenceVerdict,
@@ -18,12 +18,13 @@ from ..contracts import (
     stable_id,
     validate_ids,
 )
-from ..errors import Stopped, ToolFailure, InvariantViolation
+from ..errors import InvariantViolation, Stopped, ToolFailure
 from ..source_contracts import SourceComposition, SourceDraft
 from ..storage.db import J
-from .source_workflow import SourceWorkflow, audit_spans, blocks, draft_of
-from .source_notes import SourceNotes
+from .peer_review import writing_feedback
 from .retrieval import select_sources
+from .source_notes import SourceNotes
+from .source_workflow import SourceWorkflow, audit_spans, blocks, draft_of
 
 
 def ordered_payload(workflow, materials):
@@ -113,7 +114,7 @@ class AdaptiveAnswerWorkflow:
             value = await self.s.llm.generate(
                 "write:reader-centred:v1",
                 "writer",
-                ordered_payload(self.base, materials),
+                {**ordered_payload(self.base, materials), **writing_feedback(state)},
                 SourceComposition,
                 partition="finalization",
                 validator=lambda v: self.base.validate_composition(v, materials),
@@ -133,7 +134,7 @@ class AdaptiveAnswerWorkflow:
         materials = state["source_materials"]
         draft = SourceDraft.model_validate(state["source_draft"])
         offered, aliases = audit_spans(materials["passages"])
-        payload = ordered_payload(self.base, materials)
+        payload = {**ordered_payload(self.base, materials), **writing_feedback(state)}
         criteria = self.graph.all_criteria(state)
         qa = {f"Q{i}": cid for i, cid in enumerate(criteria)}
         payload["answer_criteria"] = [
@@ -284,9 +285,9 @@ class AdaptiveAnswerWorkflow:
         )
 
     async def supplement(self, state, queries):
+        from ..graph.researcher import Researcher
         from .adaptive_research import readable_full_text
         from .documents import work_identity
-        from ..graph.researcher import Researcher
 
         task = ResearchTask.model_validate(state["plan_history"][0]["tasks"][0])
         remaining = self.s.config["research"]["post_write_pages"]
@@ -362,6 +363,7 @@ class AdaptiveAnswerWorkflow:
             materials, extra = await self.supplement(state, review.research_queries)
         payload = {
             **ordered_payload(self.base, materials),
+            **writing_feedback(state),
             "draft": state["source_draft"],
             "feedback": review.model_dump(mode="json"),
         }

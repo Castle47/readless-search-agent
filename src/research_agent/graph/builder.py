@@ -1,28 +1,30 @@
 import asyncio
 import re
-from langgraph.graph import StateGraph, START, END
+
+from langgraph.graph import END, START, StateGraph
 from langgraph.types import Send
-from .state import ResearchState
-from .researcher import Researcher
+
 from ..contracts import (
-    UnderstandingDecision,
-    PlanProposal,
-    ResearchPlan,
-    ResearchTask,
     Criterion,
     FacetAssignment,
     Gap,
     GapAssessment,
-    MemorySnapshot,
     MemoryProposal,
+    MemorySnapshot,
+    PlanProposal,
+    ResearchPlan,
+    ResearchTask,
+    UnderstandingDecision,
     stable_id,
-    validate_ids,
     utcnow,
+    validate_ids,
 )
-from ..errors import ToolFailure, Stopped, InvariantViolation
+from ..errors import InvariantViolation, Stopped, ToolFailure
+from ..services.admission import fallback_understanding, missing_referent, validate_intro_scope
+from ..services.conversation import context_urls, understanding_payload
 from ..services.reports import render_report
-from ..services.admission import missing_referent, fallback_understanding, validate_intro_scope
-from ..services.conversation import understanding_payload, context_urls
+from .researcher import Researcher
+from .state import ResearchState
 
 RESEARCH_SEMAPHORE = asyncio.Semaphore(3)
 
@@ -50,7 +52,20 @@ class ResearchGraph:
             return {}
         from ..services.private_rag import retrieve
 
-        return await retrieve(self.s, state)
+        result = await retrieve(self.s, state)
+        from ..services.rag_ranking import is_strong_source
+
+        strong_sources = [source for source in result.get("local_sources", []) if is_strong_source(source)]
+        if strong_sources and self.s.config.get("early_draft_version"):
+            import asyncio
+
+            from ..services.early_answer import write_preview
+
+            if self.s.preview_task is None:
+                self.s.preview_task = asyncio.create_task(
+                    write_preview(self.s, strong_sources, state["understanding"])
+                )
+        return result
 
     async def understand(self, state):
         await self.s.db.phase(self.s.run_id, self.s.fence, "understand")
@@ -112,7 +127,7 @@ class ResearchGraph:
                 snapshot = await asyncio.wait_for(
                     self.s.memory.recall(state["understanding"]["standalone_query"]), timeout=10
                 )
-            except Exception:
+            except Exception:  # noqa: BLE001 - optional third-party memory failures must not abort research.
                 snapshot = snapshot.model_copy(update={"degraded": True})
                 await self.s.warn("memory.degraded")
         value = snapshot.model_dump(mode="json")
@@ -135,6 +150,16 @@ class ResearchGraph:
         if self.s.config.get("adaptive_research_workflow_version"):
             from ..services.adaptive_research import survey
 
+            state = {
+                **state,
+                "understanding": {
+                    **state["understanding"],
+                    "local_topic_context": [
+                        {"title": source["title"], "excerpt": source.get("identity_context", "")[:2000]}
+                        for source in state.get("local_sources", [])[:4]
+                    ],
+                },
+            }
             result = await survey(self.s, state)
             result["discovery"]["sources"] += state.get("local_sources", [])
             return result
@@ -165,14 +190,14 @@ class ResearchGraph:
                 )
                 if original_language_query:
                     query, language = original_language_query, "en"
-                    if not re.search(r"\bofficial\b", query, re.I):
+                    if not re.search(r"\bofficial\b", query, re.IGNORECASE):
                         query += " official"
             hits = await self.s.search.search(query, language)
             if self.s.config.get("retrieval_workflow_version") and self.s.config.get(
                 "source_first_workflow_version"
             ):
-                from ..services.retrieval import select_sources
                 from ..contracts import SearchHit
+                from ..services.retrieval import select_sources
 
                 selected = await select_sources(
                     self.s,
@@ -249,6 +274,8 @@ class ResearchGraph:
             return tasks
         criteria = self.all_criteria(state)
         gaps = state["gap_assessment"]["gaps"][:2]
+        from ..services.peer_review import supplemental_owner, supplemental_seeds
+
         return [
             ResearchTask(
                 task_id=stable_id("task", self.s.run_id, 1, i),
@@ -256,8 +283,9 @@ class ResearchGraph:
                 facet_ids=[gap["facet_id"]],
                 priority=gap["priority"],
                 scope=gap["question"],
-                exclusions=[],
-                seed_queries=[gap["question"]],
+                exclusions=supplemental_owner(state, gap).get("exclusions", []),
+                seed_queries=supplemental_seeds(state, gap, [gap["question"]]),
+                source_urls=supplemental_owner(state, gap).get("source_urls", []),
                 source_targets=["official", "paper", "independent"],
                 success_criteria=[criteria[gap["criterion_id"]]],
                 max_rounds=2,
@@ -269,9 +297,8 @@ class ResearchGraph:
 
     async def plan(self, state):
         from ..adapters.fetch import canonical_url
-
-        from ..source_contracts import SourcePlan
         from ..contracts import TaskProposal
+        from ..source_contracts import SourcePlan
 
         source_mode = (
             self.s.config.get("source_first_workflow_version", 0) if hasattr(self.s, "config") else False
@@ -555,12 +582,12 @@ class ResearchGraph:
                         and re.search(
                             r"独立.{0,12}(?:性能|成本|速度|准确|评测)|independent.{0,20}(?:performance|cost|benchmark|evaluation)",
                             criterion.description,
-                            re.I,
+                            re.IGNORECASE,
                         )
                         and not re.search(
                             r"比较|对比|评测|实测|独立|性能|速度|成本|价格|benchmark|compar|performance|latency|cost|evaluat",
                             requested,
-                            re.I,
+                            re.IGNORECASE,
                         )
                     ):
                         raise ValueError(
@@ -569,7 +596,7 @@ class ResearchGraph:
                     if re.search(
                         r"^(?:记录|保存|收集).{0,24}(?:标题|链接|URL|页面|上下文)|^(?:record|save|collect).{0,35}(?:title|url|metadata)",
                         criterion.description,
-                        re.I,
+                        re.IGNORECASE,
                     ):
                         raise ValueError(
                             "Source metadata is stored by the service; criteria must answer the requested substantive facets, not recording steps"
@@ -651,6 +678,8 @@ class ResearchGraph:
         }
 
     def dispatch(self, state):
+        from ..services.peer_review import task_questions
+
         return [
             Send(
                 "research_task",
@@ -660,6 +689,7 @@ class ResearchGraph:
                     "task": task,
                     "memory_snapshot": state["memory_snapshot"],
                     "discovery": state.get("discovery", {}),
+                    "peer_questions": task_questions(state, task),
                 },
             )
             for task in state["plan_history"][-1]["tasks"]
@@ -681,6 +711,11 @@ class ResearchGraph:
         self.s.understanding = state["understanding"]
         await self.s.db.phase(self.s.run_id, self.s.fence, "merge")
         return await merge_claims(self.s, state)
+
+    async def peer_consultation(self, state):
+        from ..services.peer_review import PeerConsultation
+
+        return await PeerConsultation(self.s).before_write(state)
 
     async def gaps(self, state):
         criteria = self.all_criteria(state)
@@ -733,7 +768,9 @@ class ResearchGraph:
         )
         if self.s.config.get("source_first_workflow_version"):
             assessment.explanation = "这是写作材料就绪程度；最终事实和问题覆盖仍需回答核验。"
-            return {"gap_assessment": assessment.model_dump(mode="json")}
+            from ..services.peer_review import apply_peer_gaps
+
+            return {"gap_assessment": apply_peer_gaps(state, assessment.model_dump(mode="json"), criteria)}
         async with self.s.db.transaction(self.s.run_id, self.s.fence) as conn:
             await conn.execute(
                 "UPDATE research.runs SET coverage=%s WHERE id=%s",
@@ -764,9 +801,15 @@ class ResearchGraph:
             and await self.s.ops.research_headroom() < self.s.config["research"]["min_supplemental_tokens"]
         ):
             return "write"
+        from ..services.peer_review import pending_messages
+
+        # Peer challenges first reread frozen sources, including private-only runs with no web allowance.
+        requirements = {"tokens_research": 20000}
+        if not pending_messages(state.get("peer_consultation", {})):
+            requirements.update(search_calls=2, fetched_pages=2)
         if all(
             b["limits"][k] - b["used"].get(k, 0) - b["reserved"].get(k, 0) >= v
-            for k, v in {"search_calls": 2, "fetched_pages": 2, "tokens_research": 20000}.items()
+            for k, v in requirements.items()
         ):
             return "plan"
         return "write"
@@ -787,8 +830,10 @@ class ResearchGraph:
     async def quality(self, state):
         if self.s.config.get("adaptive_research_workflow_version"):
             from ..services.adaptive_answer import AdaptiveAnswerWorkflow
+            from ..services.peer_review import PeerConsultation
 
-            return await AdaptiveAnswerWorkflow(self.s, self).resolve(state)
+            peer = await PeerConsultation(self.s).after_review(state)
+            return {**peer, **await AdaptiveAnswerWorkflow(self.s, self).resolve({**state, **peer})}
         if self.s.config.get("source_first_workflow_version"):
             from ..services.source_workflow import SourceWorkflow
 
@@ -974,6 +1019,7 @@ class ResearchGraph:
             "plan",
             "join",
             "merge",
+            "peer_consultation",
             "gaps",
             "write",
             "quality",
@@ -1005,7 +1051,11 @@ class ResearchGraph:
         g.add_conditional_edges("plan", self.dispatch, ["research_task"])
         g.add_edge("research_task", "join")
         g.add_edge("join", "merge")
-        g.add_edge("merge", "gaps")
+        if self.s.config.get("peer_review_workflow_version"):
+            g.add_edge("merge", "peer_consultation")
+            g.add_edge("peer_consultation", "gaps")
+        else:
+            g.add_edge("merge", "gaps")
         g.add_conditional_edges("gaps", self.after_gaps, {"plan": "plan", "write": "write"})
         g.add_edge("write", "validate_report")
         g.add_edge("validate_report", "quality")

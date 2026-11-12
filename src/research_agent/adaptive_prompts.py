@@ -63,3 +63,35 @@ ADAPTIVE_ROLE_INSTRUCTIONS["readiness"] += (
     " For a learning-oriented explanation, consider whether the packet enables a concrete walkthrough and supplies essential prerequisite concepts. An example may be constructed from documented premises; a source need not supply the identical hypothetical scenario."
 )
 ADAPTIVE_ROLE_INSTRUCTIONS["report_verifier"] += "\n" + READER_REVIEW_POLICY
+
+
+# Scope follows the user's requested explanation, not a generic project review.
+for role in ("understand", "planner", "source_selector", "writer", "editor"):
+    ADAPTIVE_ROLE_INSTRUCTIONS[role] += (
+        " Treat the exact named entity and its requested mechanism as the scope. "
+        "Do not expand an unfamiliar proper noun into similar abbreviations or homonyms merely because search returned them. "
+        "Use relevant local source context to resolve identity before broadening searches. "
+        "An introduction plus acceleration question calls for what it is, why it is slow and how the concrete optimizations work. "
+        "Do not add installation/deployment instructions, benchmark catalogues, or accuracy surveys unless requested or essential to that explanation. "
+        "Prefer a short uncertainty note over an invented disambiguation chapter."
+    )
+
+ADAPTIVE_ROLE_INSTRUCTIONS["report_verifier"] += (
+    " Every important_facts.statement MUST be copied verbatim as a contiguous substring "
+    "of its referenced paragraph's text, preserving punctuation and spacing. "
+    "Put your paraphrase or criticism in the feedback fields, not in statement."
+)
+ADAPTIVE_ROLE_INSTRUCTIONS["source_selector"] += (
+    " local_topic_context is unverified source data that may identify the intended entity. "
+    "Reject unrelated homonyms even when they match the spelling. Count selected=true decisions "
+    "before returning and ensure that count never exceeds max_pages."
+)
+
+for role in ("writer", "editor"):
+    ADAPTIVE_ROLE_INSTRUCTIONS[role] += (
+        " Start by answering what the named subject is, then explain the requested mechanism. "
+        "Do not create a disambiguation or source-audit section for an ordinary introduction. "
+        "Do not contrast the name with a similar-looking abbreviation unless the user requests it or that distinction is indispensable to the mechanism. "
+        "If identity rests only on secondary material, attribute that description once and give a short caveat; avoid paragraphs listing absent official pages. "
+        "Verification status is shown separately by the application."
+    )

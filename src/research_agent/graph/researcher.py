@@ -804,6 +804,18 @@ class Researcher:
 
     async def finish(self, state):
         task = self.task(state)
+        if self.s.config.get("peer_review_workflow_version"):
+            await self.s.db.commit_value(
+                self.s.run_id,
+                self.s.fence,
+                f"reader-context:{state['batch_no']}:{task.task_id}",
+                "reader_context",
+                {
+                    "task_id": task.task_id,
+                    "source_ids": sorted(sid for sid, ids in state.get("read_chunks", {}).items() if ids),
+                },
+                task.task_id,
+            )
         key = f"task:batch={state['batch_no']}:task={task.task_id}"
         previous = await self.s.db.saved_value(self.s.run_id, key)
         if previous is None:

@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "question_id": {
+      "title": "Question Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "clarified",
+        "needs_research",
+        "unresolved"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "answer": {
+      "maxLength": 1500,
+      "minLength": 1,
+      "title": "Answer",
+      "type": "string"
+    },
+    "passage_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6,
+      "title": "Passage Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "question_id",
+    "status",
+    "answer",
+    "passage_ids"
+  ],
+  "title": "PeerReply",
+  "type": "object"
+}

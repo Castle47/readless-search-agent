@@ -2,19 +2,21 @@
 
 import json
 from datetime import timedelta
-from letta_client import AsyncLetta, APITimeoutError, APIConnectionError
+
+from letta_client import APIConnectionError, APITimeoutError, AsyncLetta
+
 from ..contracts import (
     MemoryItem,
     MemorySnapshot,
     canonical,
-    stable_id,
+    digest,
     normalize,
+    stable_id,
     utcnow,
     validate_ids,
-    digest,
 )
 from ..errors import ResearchError
-from ..storage.db import one, J
+from ..storage.db import J, one
 
 BLOCK_LIMITS = {
     "research_policy": 2000,
@@ -68,7 +70,7 @@ class Memory:
                 tool_ids=[],
                 enable_sleeptime=False,
                 llm_config={
-                    "model": "openai/gpt-5.6-luna",
+                    "model": self.settings.model,
                     "model_endpoint": "https://openrouter.ai/api/v1",
                     "model_endpoint_type": "openrouter",
                     "context_window": 1050000,
@@ -375,12 +377,12 @@ class Memory:
                         combined[old_id] = combined[old_id].model_copy(update={"status": "superseded"})
             keep = self.filter_items(list(combined.values()))
 
-            def envelope():
+            def envelope(kept=keep):
                 return canonical(
                     {
                         "schema_version": 1,
                         "scope": self.settings.memory_scope,
-                        "items": [i.model_dump(mode="json") for i in keep],
+                        "items": [i.model_dump(mode="json") for i in kept],
                     }
                 )
 

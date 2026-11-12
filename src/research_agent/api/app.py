@@ -1,20 +1,22 @@
-from contextlib import asynccontextmanager
 import base64
 import hashlib
 import hmac
 import json
-from uuid import uuid4, UUID
-from fastapi import FastAPI, Request, Depends, Query
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from fastapi.responses import JSONResponse, Response
+from contextlib import asynccontextmanager
+from uuid import UUID, uuid4
+
+from fastapi import Depends, FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse, Response
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, generate_latest
 from pydantic import ValidationError
-from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, Counter
+
 from ..config import Settings
-from ..contracts import ResearchRequest, Report, TERMINAL, canonical
+from ..contracts import TERMINAL, Report, ResearchRequest, canonical
+from ..errors import ResearchError
 from ..storage.db import Database, one
 from ..storage.evidence import EvidenceStore
-from ..errors import ResearchError
 
 REQUESTS = Counter("readless_research_http_requests_total", "Research HTTP requests", ["method", "status"])
 MESSAGES = {
@@ -115,8 +117,9 @@ def create_app(settings=None, database=None):
         return failure(request, "internal_error", 500)
 
     bearer = HTTPBearer(auto_error=False)
+    bearer_dependency = Depends(bearer)
 
-    async def auth(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)):
+    async def auth(request: Request, credentials: HTTPAuthorizationCredentials | None = bearer_dependency):
         settings.refresh_secrets()
         token = settings.api_bearer_token.get_secret_value()
         if (
@@ -159,7 +162,7 @@ def create_app(settings=None, database=None):
             ):
                 raise ValueError()
             return data["offset"]
-        except Exception:
+        except (ValueError, TypeError, KeyError):
             raise ResearchError("invalid_cursor") from None
 
     @app.get("/healthz")
@@ -175,6 +178,7 @@ def create_app(settings=None, database=None):
                 version = await one(conn, "SELECT version_num FROM research.alembic_version")
                 await conn.execute("SELECT 1 FROM checkpoints.checkpoint_migrations LIMIT 1")
             from pathlib import Path
+
             from alembic.config import Config
             from alembic.script import ScriptDirectory
 
@@ -196,7 +200,7 @@ def create_app(settings=None, database=None):
                 "model": settings.model,
                 "reasoning_efforts": config["reasoning_efforts"],
             }
-        except Exception:
+        except Exception:  # noqa: BLE001 - readiness must contain arbitrary database/driver failures.
             return JSONResponse({"ready": False, "message": "研究数据库或配置尚未就绪。"}, status_code=503)
 
     @app.get("/metrics", dependencies=[Depends(auth)])
@@ -246,14 +250,20 @@ def create_app(settings=None, database=None):
     @app.get("/v1/research/{run_id}", dependencies=[Depends(auth)])
     async def status(run_id: str):
         result = public_run(await get_run(run_id))
-        result["has_unverified_draft"] = await db.saved_value(run_id, "draft:initial:v1") is not None
+        result["has_unverified_draft"] = (
+            await db.saved_value(run_id, "draft:edited:v1") is not None
+            or await db.saved_value(run_id, "draft:initial:v1") is not None
+            or await db.saved_value(run_id, "draft:preview:v1") is not None
+        )
         return result
 
     @app.get("/v1/research/{run_id}/draft", dependencies=[Depends(auth)])
     async def unverified_draft(run_id: str):
         await get_run(run_id)
-        value = await db.saved_value(run_id, "draft:edited:v1") or await db.saved_value(
-            run_id, "draft:initial:v1"
+        value = (
+            await db.saved_value(run_id, "draft:edited:v1")
+            or await db.saved_value(run_id, "draft:initial:v1")
+            or await db.saved_value(run_id, "draft:preview:v1")
         )
         if value is None:
             raise ResearchError("not_found")

@@ -1,13 +1,16 @@
 from __future__ import annotations
+
 from contextlib import asynccontextmanager
 from datetime import timedelta
 from uuid import uuid4
+
 from psycopg.rows import dict_row
 from psycopg.types.json import Jsonb
 from psycopg_pool import AsyncConnectionPool
+
+from ..config import effective_limits
 from ..contracts import TERMINAL, digest, stable_id, utcnow
 from ..errors import Fenced, InvariantViolation, ResearchError, Stopped
-from ..config import effective_limits
 
 J = Jsonb
 
@@ -277,6 +280,21 @@ class Database:
                 )
                 await self.event(
                     conn, run_id, "task.round_finished", {"task_id": task_id, "round": value["round"]}
+                )
+            elif kind == "peer_message":
+                await self.event(conn, run_id, "researcher.exchange", value)
+            elif kind == "peer_consultation":
+                await self.event(
+                    conn,
+                    run_id,
+                    "researcher.consultation_finished",
+                    {
+                        "stage": value["stage"],
+                        "status": value["status"],
+                        "message_count": len(value["messages"]),
+                        "pending_count": value.get("pending_count", 0),
+                        "reason": value.get("reason"),
+                    },
                 )
             elif kind == "task_start":
                 await conn.execute("UPDATE research.runs SET phase='research' WHERE id=%s", (run_id,))

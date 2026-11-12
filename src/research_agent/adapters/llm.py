@@ -1,12 +1,14 @@
 """OpenRouter-only structured HTTP adapter. No vendor SDK or tool execution."""
 
 import json
+
 import httpx
 import tiktoken
 from pydantic import ValidationError
-from ..model_policy import MODEL_ALIASES
+
 from ..contracts import canonical
-from ..errors import ToolFailure, Stopped
+from ..errors import Stopped, ToolFailure
+from ..model_policy import MODEL_ALIASES
 
 SYSTEM = """You are a bounded web research component. Return only the requested JSON schema.
 The role instruction is authoritative. User question constraints must be preserved.
@@ -31,8 +33,8 @@ ROLE_INSTRUCTIONS = {
     "editor": "Edit the COMPLETE answer once using both fact feedback and reader-quality feedback. Preserve the requested scope and supported substance while fixing the argument, order, repetition, unclear concepts and unsupported claims together. You may reorganize, replace, add or remove blocks using only the offered verified premises. Do not patch one sentence at a time in isolation or repeat the introduction to fill a deleted sentence. Keep good passages unchanged where possible so their existing checks can be reused.\nMake the explanation develop from identity and motivation through the mechanism to practical meaning. Explain related concepts precisely rather than treating neighboring source properties as synonyms. Prefer useful examples, contrasts and input/output demonstrations over repeated declarations or catalogues of limits. Use natural qualifications only where they matter; never add a blanket 推断/Inference prefix. Do not invent absent architecture details, observed deployments, APIs or absence claims. A hypothetical software policy based on documented outputs is allowed as an illustration; its threshold is not a recommendation or measured property.\nReturn the complete revised title and sections with blocks in final reading order, plus addressed_feedback_ids and remaining_issues. Each block uses the writer contract: paragraph, list (one item per line), table (rectangular TSV with header row), or code (plain code, no fences). Set language only for code and illustrative=true for invented demonstration values or pseudocode. Preserve actual evidence relationships and valid IDs. Acknowledge only feedback you actually resolved. remaining_issues must contain only unresolved supplied feedback, each with feedback_id and description. Ordinary source qualifications or absent unrequested independent benchmarks are not new editorial failures; express relevant limits naturally in the answer. Do not introduce new completion requirements. Revisions will be independently fact-checked; do not write editorial process notes in the answer.",
     "memory_candidates": "Propose at most five reusable research lessons, source patterns, verified conclusions or genuine unresolved questions. Never copy credentials or raw pages. Conclusions copy exactly ONE current supported claim with evidence IDs. Open questions copy supplied unresolved strings exactly. Supersede recalled IDs only where the new verified finding resolves them. No model knowledge as evidence.",
 }
-from ..source_prompts import SOURCE_ROLE_INSTRUCTIONS
 from ..adaptive_prompts import ADAPTIVE_ROLE_INSTRUCTIONS
+from ..source_prompts import SOURCE_ROLE_INSTRUCTIONS
 
 ROLE_INSTRUCTIONS["source_reader"] = SOURCE_ROLE_INSTRUCTIONS["source_reader"]
 ROLE_INSTRUCTIONS["readiness"] = ADAPTIVE_ROLE_INSTRUCTIONS["readiness"]
@@ -61,8 +63,15 @@ EFFORT = {
 
 
 from ..services.query_rewrite import INSTRUCTIONS as CONTEXT_INSTRUCTIONS
+
 ROLE_INSTRUCTIONS.update(CONTEXT_INSTRUCTIONS)
 EFFORT.update(query_rewrite="low", conversation_summary="low")
+
+from ..peer_contracts import CONTEXT_INSTRUCTIONS as PEER_CONTEXT_INSTRUCTIONS
+from ..peer_contracts import INSTRUCTIONS as PEER_INSTRUCTIONS
+
+ROLE_INSTRUCTIONS.update(PEER_INSTRUCTIONS)
+EFFORT.update(peer_questioner="low", peer_responder="low")
 
 
 def strict_schema(schema):
@@ -107,6 +116,11 @@ class LLM:
                 "role": "system",
                 "content": SYSTEM
                 + "\n"
+                + (
+                    PEER_CONTEXT_INSTRUCTIONS.get(role, "") + "\n"
+                    if self.ops.config.get("peer_review_workflow_version")
+                    else ""
+                )
                 + (
                     ADAPTIVE_ROLE_INSTRUCTIONS.get(
                         role, SOURCE_ROLE_INSTRUCTIONS.get(role, ROLE_INSTRUCTIONS[role])
@@ -226,7 +240,7 @@ class LLM:
                 key + (":correction" if repair else ""),
                 "llm",
                 body,
-                lambda timeout: self.request(body, timeout),
+                lambda timeout, body=body: self.request(body, timeout),
                 task_id=task_id,
                 partition=partition,
                 tokens=reservation,

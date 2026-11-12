@@ -3,6 +3,10 @@
     "Criterion": {
       "additionalProperties": false,
       "properties": {
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
         "criterion_id": {
           "minLength": 1,
           "pattern": "\\S",
@@ -34,9 +38,11 @@
         }
       },
       "required": [
+        "required",
         "criterion_id",
         "description",
-        "kind"
+        "kind",
+        "facet_ids"
       ],
       "title": "Criterion",
       "type": "object"
@@ -143,6 +149,7 @@
         "exclusions",
         "seed_queries",
         "source_targets",
+        "source_urls",
         "success_criteria",
         "parent_gap_ids"
       ],

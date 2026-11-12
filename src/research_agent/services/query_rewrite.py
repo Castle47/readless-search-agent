@@ -25,6 +25,14 @@ INSTRUCTIONS = {
 }
 
 
+INSTRUCTIONS["query_rewrite"] += (
+    " Preserve the exact spelling and case of the user's named topic; do not uppercase it into an acronym. "
+    "Do not add possible misspellings, disambiguation, uncertainty or comparisons that the user did not ask for. "
+    "For a named software/model project, include a short original-source query consisting of the original topic name, its technical domain from the question, and GitHub. A bare name plus GitHub can match unrelated homonyms. "
+    "Keep mechanism and acceleration queries specific to that same project."
+)
+
+
 async def summarize(services):
     history = history_messages(services.request.context)
     if not history:

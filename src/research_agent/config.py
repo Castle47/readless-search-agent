@@ -1,10 +1,13 @@
 from __future__ import annotations
+
 import json
 from pathlib import Path
 from typing import Literal
+
 import yaml
 from pydantic import SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 from .contracts import digest
 from .model_policy import DEFAULT_MODEL, ModelId
 
@@ -33,7 +36,11 @@ class Settings(BaseSettings):
     owner_id: Literal["local"] = "local"
     memory_scope: str = "research-general"
     allow_live_tests: bool = False
+    site_sources_path: Path = Path("/knowledge/readless-site")
+    user_folders_path: Path = Path("/knowledge/user-folders")
     vault_path: Path = Path("/knowledge/obsidian")
+    readless_cloud_path: Path = Path("/knowledge/readless-cloud-articles")
+    readless_articles_path: Path = Path("/knowledge/readless-articles")
     rag_index: Path = Path("/run/readless-index/vault.sqlite")
     embedding_url: str = "http://embeddings:11434"
 
@@ -70,10 +77,10 @@ class Settings(BaseSettings):
         return config
 
     def snapshot(self):
-        from .adapters.llm import SYSTEM, ROLE_INSTRUCTIONS, EFFORT
-
-        from .source_prompts import SOURCE_ROLE_INSTRUCTIONS
+        from .adapters.llm import EFFORT, ROLE_INSTRUCTIONS, SYSTEM
         from .adaptive_prompts import ADAPTIVE_ROLE_INSTRUCTIONS
+        from .peer_contracts import CONTEXT_INSTRUCTIONS as PEER_CONTEXT_INSTRUCTIONS
+        from .source_prompts import SOURCE_ROLE_INSTRUCTIONS
 
         if set(EFFORT) != set(ROLE_INSTRUCTIONS) or set(EFFORT.values()) - {"none", "low", "medium"}:
             raise ValueError("Invalid role reasoning configuration")
@@ -102,17 +109,31 @@ class Settings(BaseSettings):
                 cap["max_output"] = astra_profile.get("role_outputs", {}).get(role, cap["max_output"])
             config["research"].update(astra_profile.get("research", {}))
             validate_defaults(config)
-        efforts = {role: "high" for role in EFFORT} if self.model == "openai/gpt-6-astra" else dict(EFFORT)
+        if self.model == "openai/gpt-6-luna":
+            config["model"]["timeout_seconds"] = 180
+            for role, cap in config["model"]["roles"].items():
+                cap["max_output"] = max(
+                    cap["max_output"], 16000 if role in {"writer", "editor", "report_verifier"} else 8000
+                )
+        efforts = (
+            {role: "high" for role in EFFORT}
+            if self.model in {"openai/gpt-6-astra", "openai/gpt-6-luna"}
+            else dict(EFFORT)
+        )
         config["adaptive_research_workflow_version"] = int(adaptive)
+        config["peer_review_workflow_version"] = int(
+            adaptive and bool(config.get("peer_review_workflow_version"))
+        )
         config["model"]["temperature"] = None
         config.update(
             schema_version=1,
             model_id=self.model,
             tokenizer=self.tokenizer,
             prompt_version="2",
-            adapter_version="50",
+            adapter_version="52",
             reasoning_efforts=efforts,
-            retrieval_workflow_version=1,
+            retrieval_workflow_version=2,
+            early_draft_version=1,
             reader_budget_workflow_version=int(bool(config.get("source_first_workflow_version"))),
             editorial_workflow_version=1,
             finalization_rollover_version=1,
@@ -125,6 +146,7 @@ class Settings(BaseSettings):
                 "roles": ROLE_INSTRUCTIONS,
                 "source_roles": SOURCE_ROLE_INSTRUCTIONS,
                 "adaptive_roles": ADAPTIVE_ROLE_INSTRUCTIONS,
+                "peer_context": PEER_CONTEXT_INSTRUCTIONS if config["peer_review_workflow_version"] else {},
                 "efforts": efforts,
             }
         )
@@ -137,13 +159,25 @@ def validate_defaults(config):
     w = config["worker"]
     if r["max_supplemental_batches"] != 1 or not 1 <= r["parallel_researchers"] <= 3:
         raise ValueError("invalid graph limits")
+    if config.get("peer_review_workflow_version"):
+        peer = config["peer_review"]
+        if not (
+            1 <= peer["max_rounds"] <= 2
+            and 2 <= peer["max_participants"] <= 3
+            and 1 <= peer["max_questions_per_round"] <= 2
+            and 0 <= peer["max_post_write_questions"] <= 2
+            and 1 <= peer["max_http_attempts"] <= 16
+            and 0 < peer["token_cap"] <= 48000
+            and peer["min_seconds_remaining"] >= 30
+        ):
+            raise ValueError("invalid peer consultation limits")
     if sum(r["token_partitions"].values()) != r["total_tokens"]:
         raise ValueError("token partitions must match total")
     if w["lease_seconds"] <= w["heartbeat_seconds"]:
         raise ValueError("lease must exceed heartbeat")
     if config["model"]["finalization_split"]["report_verifier"] > r["token_partitions"]["finalization"]:
         raise ValueError("invalid finalization budget")
-    for role, cap in config["model"]["roles"].items():
+    for cap in config["model"]["roles"].values():
         if cap["max_input"] + cap["max_output"] > 1050000:
             raise ValueError("model context exceeded")
 
@@ -173,6 +207,9 @@ def effective_limits(request, config):
     limits.update(
         tokens_research=total - finalization - memory, tokens_finalization=finalization, tokens_memory=memory
     )
+    if config.get("peer_review_workflow_version"):
+        limits["tokens_peer_review"] = min(config["peer_review"]["token_cap"], total)
+        limits["peer_review_http_attempts"] = config["peer_review"]["max_http_attempts"]
     limits.update(
         {
             "tokens_" + role: finalization

@@ -56,14 +56,41 @@ class ScriptedLLM:
         return value
 
     def response(self, role, p):
+        if role == "peer_questioner":
+            return {"questions": []}
+        if role == "peer_responder":
+            return {
+                "question_id": p["question_id"],
+                "status": "needs_research",
+                "answer": "The fixture still requires independent source review.",
+                "passage_ids": [],
+            }
         scenario = self.scenario
         count = scenario.get("tasks", 1)
         if role == "query_rewrite":
-            return {"standalone_query": p["question"], "local_query": p["question"], "search_terms": p["understanding"].get("search_terms") or [p["question"]], "scope": "web"}
+            return {
+                "standalone_query": p["question"],
+                "local_query": p["question"],
+                "search_terms": p["understanding"].get("search_terms") or [p["question"]],
+                "scope": "web",
+            }
         if role == "conversation_summary":
-            return {"summary": "Fixture conversation summary", "user_constraints": [], "unresolved_questions": []}
+            return {
+                "summary": "Fixture conversation summary",
+                "user_constraints": [],
+                "unresolved_questions": [],
+            }
         if role == "source_selector":
-            return {"decisions": [{"candidate_id": c["candidate_id"], "read": i < p["max_pages"], "reason": "Relevant fixture source"} for i, c in enumerate(p["candidates"])]}
+            return {
+                "decisions": [
+                    {
+                        "candidate_id": c["candidate_id"],
+                        "read": i < p["max_pages"],
+                        "reason": "Relevant fixture source",
+                    }
+                    for i, c in enumerate(p["candidates"])
+                ]
+            }
         if role == "understand":
             return {
                 "understanding": {

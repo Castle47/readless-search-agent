@@ -1,4 +1,5 @@
 from typing import Annotated, TypedDict
+
 from ..errors import InvariantViolation
 
 
@@ -48,9 +49,12 @@ class ResearchState(TypedDict, total=False):
     whole_answer_review: dict
     adaptive_review_key: str
     adaptive_revision: dict
+    peer_consultation: dict
+    postwrite_consultation: dict
 
 
 class TaskInput(TypedDict):
+    peer_questions: list[dict]
     run_id: str
     batch_no: int
     task: dict
@@ -64,6 +68,7 @@ class TaskOutput(TypedDict):
 
 
 class TaskState(TypedDict, total=False):
+    peer_questions: list[dict]
     retrieval_feedback: dict
     material_note_keys: list[str]
     run_id: str
